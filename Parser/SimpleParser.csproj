@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SimpleParser</RootNamespace>
+    <AssemblyName>SimpleParser</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Parser.cs" />
+    <Compile Include="ParserException.cs" />
+    <Compile Include="Grammar\Terminals\Asterisk.cs" />
+    <Compile Include="Grammar\Terminals\Caret.cs" />
+    <Compile Include="Grammar\Terminals\CloseParenthesis.cs" />
+    <Compile Include="Grammar\Terminals\DecimalDigit.cs" />
+    <Compile Include="Grammar\NonTerminals\DigitSequence.cs" />
+    <Compile Include="Grammar\NonTerminals\Expression.cs" />
+    <Compile Include="Grammar\NonTerminals\Formula.cs" />
+    <Compile Include="Grammar\NonTerminals\FractionalPart.cs" />
+    <Compile Include="Grammar\NonTerminals\InfixOperator.cs" />
+    <Compile Include="Grammar\NonTerminals\NegSign.cs" />
+    <Compile Include="Grammar\NonTerminals\NospaceExpression.cs" />
+    <Compile Include="Grammar\NonTerminals\NumericalConstant.cs" />
+    <Compile Include="Grammar\NonTerminals\PrefixOperator.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Grammar\NonTerminals\SignificandPart.cs" />
+    <Compile Include="Grammar\Symbol.cs" />
+    <Compile Include="Grammar\NonTerminals\WholeNumberPart.cs" />
+    <Compile Include="Grammar\Terminals\ForwardSlash.cs" />
+    <Compile Include="Grammar\Terminals\FullStop.cs" />
+    <Compile Include="Grammar\Terminals\Minus.cs" />
+    <Compile Include="Grammar\Terminals\OpenParenthesis.cs" />
+    <Compile Include="Grammar\Terminals\Plus.cs" />
+    <Compile Include="Grammar\Terminals\WhiteSpace.cs" />
+    <Compile Include="Tools\EnumerableExtensions.cs" />
+    <Compile Include="Tools\FormulaExtensions.cs" />
+    <Compile Include="Tools\StringExtensions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
