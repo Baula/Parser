@@ -9,8 +9,8 @@ namespace SimpleParser
         private static void Main(string[] args)
         {
             TestFormula(args[0]);
-            //TestValidFormulas();
-            //TestInvalidFormulas();
+            //ShowValidFormulas();
+            //ShowInvalidFormulas();
         }
 
         private static void TestFormula(string formulaAsString)
@@ -35,7 +35,7 @@ namespace SimpleParser
             }
         }
 
-        private static void TestValidFormulas()
+        private static void ShowValidFormulas()
         {
             var sampleValidFormulas = new[]
                 {
@@ -65,7 +65,7 @@ namespace SimpleParser
             Console.WriteLine(sb.ToString());
         }
 
-        private static void TestInvalidFormulas()
+        private static void ShowInvalidFormulas()
         {
             var sb = new StringBuilder();
             var sampleInvalidFormulas = new[]
