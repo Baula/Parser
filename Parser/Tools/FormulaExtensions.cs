@@ -4,7 +4,7 @@ using SimpleParser.Grammar;
 
 namespace SimpleParser.Tools
 {
-    static class FormulaExtensions
+    public static class FormulaExtensions
     {
         public static void DumpRecursive(this Symbol symbol, StringBuilder sb, int depth = 0)
         {

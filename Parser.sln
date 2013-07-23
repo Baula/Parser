@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleParser", "Parser\SimpleParser.csproj", "{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleParser.Tests", "SimpleParser.Tests\SimpleParser.Tests.csproj", "{98629FC2-09F0-4B2B-B7F6-B0FD67193E18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98629FC2-09F0-4B2B-B7F6-B0FD67193E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98629FC2-09F0-4B2B-B7F6-B0FD67193E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98629FC2-09F0-4B2B-B7F6-B0FD67193E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98629FC2-09F0-4B2B-B7F6-B0FD67193E18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
