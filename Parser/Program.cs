@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using SimpleParser.Tools;
 
 namespace SimpleParser
 {
@@ -17,8 +18,12 @@ namespace SimpleParser
             try
             {
                 var formula = Parser.ParseFormula(formulaAsString);
+
                 Console.WriteLine(formulaAsString);
                 Console.WriteLine(formula);
+                var sb = new StringBuilder();
+                formula.DumpRecursive(sb);
+                Console.WriteLine(sb);
             }
             catch (ParserException e)
             {
@@ -54,7 +59,7 @@ namespace SimpleParser
             foreach (var formula in sampleValidFormulas)
             {
                 var f = Parser.ParseFormula(formula);
-                Parser.DumpSymbolRecursive(sb, f, 0);
+                f.DumpRecursive(sb);
                 sb.Append("==================================" + Environment.NewLine);
             }
             Console.WriteLine(sb.ToString());

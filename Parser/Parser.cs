@@ -1,6 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using SimpleParser.Grammar;
 using SimpleParser.Grammar.NonTerminals;
 using SimpleParser.Grammar.Terminals;
@@ -9,7 +8,27 @@ namespace SimpleParser
 {
     public static class Parser
     {
-        public static Symbol ParseFormula(string s)
+        public static Formula ParseFormula(string s)
+        {
+            var symbols = GetSymbols(s);
+#if false
+            if (symbols.Any())
+            {
+                Console.WriteLine("Terminal Symbols");
+                Console.WriteLine("================");
+                foreach (var terminal in symbols)
+                    Console.WriteLine("{0} >{1}<", terminal.GetType().Name.ToString(),
+                        terminal.ToString());
+                Console.WriteLine();
+            }
+#endif
+            var formula = Formula.Produce(symbols);
+            if (formula == null)
+                throw new ParserException("Invalid formula");
+            return formula;
+        }
+
+        private static IEnumerable<Symbol> GetSymbols(string s)
         {
             var symbols = s.Select(c =>
                 {
@@ -48,32 +67,7 @@ namespace SimpleParser
                             return (Symbol) null;
                     }
                 });
-#if false
-            if (symbols.Any())
-            {
-                Console.WriteLine("Terminal Symbols");
-                Console.WriteLine("================");
-                foreach (var terminal in symbols)
-                    Console.WriteLine("{0} >{1}<", terminal.GetType().Name.ToString(),
-                        terminal.ToString());
-                Console.WriteLine();
-            }
-#endif
-            var formula = Formula.Produce(symbols);
-            if (formula == null)
-                throw new ParserException("Invalid formula");
-            return formula;
-        }
-
-        public static void DumpSymbolRecursive(StringBuilder sb, Symbol symbol, int depth)
-        {
-            sb.Append(string.Format("{0}{1} >{2}<",
-                                    "".PadRight(depth*2),
-                                    symbol.GetType().Name,
-                                    symbol)).Append(Environment.NewLine);
-            if (symbol.ConstituentSymbols != null)
-                foreach (var childSymbol in symbol.ConstituentSymbols)
-                    DumpSymbolRecursive(sb, childSymbol, depth + 1);
+            return symbols;
         }
     }
 }
