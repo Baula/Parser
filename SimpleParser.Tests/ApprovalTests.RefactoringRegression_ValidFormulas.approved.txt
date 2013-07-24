@@ -1,0 +1,430 @@
+﻿Formula >1+((2+3)*4)^5<
+  Expression >1+((2+3)*4)^5<
+    NospaceExpression >1+((2+3)*4)^5<
+      Expression >1<
+        NospaceExpression >1<
+          NumericalConstant >1<
+            SignificandPart >1<
+              WholeNumberPart >1<
+                DigitSequence >1<
+                  DecimalDigit >1<
+      InfixOperator >+<
+        Plus >+<
+      Expression >((2+3)*4)^5<
+        NospaceExpression >((2+3)*4)^5<
+          Expression >((2+3)*4)<
+            NospaceExpression >((2+3)*4)<
+              OpenParenthesis >(<
+              Expression >(2+3)*4<
+                NospaceExpression >(2+3)*4<
+                  Expression >(2+3)<
+                    NospaceExpression >(2+3)<
+                      OpenParenthesis >(<
+                      Expression >2+3<
+                        NospaceExpression >2+3<
+                          Expression >2<
+                            NospaceExpression >2<
+                              NumericalConstant >2<
+                                SignificandPart >2<
+                                  WholeNumberPart >2<
+                                    DigitSequence >2<
+                                      DecimalDigit >2<
+                          InfixOperator >+<
+                            Plus >+<
+                          Expression >3<
+                            NospaceExpression >3<
+                              NumericalConstant >3<
+                                SignificandPart >3<
+                                  WholeNumberPart >3<
+                                    DigitSequence >3<
+                                      DecimalDigit >3<
+                      CloseParenthesis >)<
+                  InfixOperator >*<
+                    Asterisk >*<
+                  Expression >4<
+                    NospaceExpression >4<
+                      NumericalConstant >4<
+                        SignificandPart >4<
+                          WholeNumberPart >4<
+                            DigitSequence >4<
+                              DecimalDigit >4<
+              CloseParenthesis >)<
+          InfixOperator >^<
+            Caret >^<
+          Expression >5<
+            NospaceExpression >5<
+              NumericalConstant >5<
+                SignificandPart >5<
+                  WholeNumberPart >5<
+                    DigitSequence >5<
+                      DecimalDigit >5<
+==================================
+Formula >1+2-3*4/5^6<
+  Expression >1+2-3*4/5^6<
+    NospaceExpression >1+2-3*4/5^6<
+      Expression >1+2<
+        NospaceExpression >1+2<
+          Expression >1<
+            NospaceExpression >1<
+              NumericalConstant >1<
+                SignificandPart >1<
+                  WholeNumberPart >1<
+                    DigitSequence >1<
+                      DecimalDigit >1<
+          InfixOperator >+<
+            Plus >+<
+          Expression >2<
+            NospaceExpression >2<
+              NumericalConstant >2<
+                SignificandPart >2<
+                  WholeNumberPart >2<
+                    DigitSequence >2<
+                      DecimalDigit >2<
+      InfixOperator >-<
+        Minus >-<
+      Expression >3*4/5^6<
+        NospaceExpression >3*4/5^6<
+          Expression >3*4<
+            NospaceExpression >3*4<
+              Expression >3<
+                NospaceExpression >3<
+                  NumericalConstant >3<
+                    SignificandPart >3<
+                      WholeNumberPart >3<
+                        DigitSequence >3<
+                          DecimalDigit >3<
+              InfixOperator >*<
+                Asterisk >*<
+              Expression >4<
+                NospaceExpression >4<
+                  NumericalConstant >4<
+                    SignificandPart >4<
+                      WholeNumberPart >4<
+                        DigitSequence >4<
+                          DecimalDigit >4<
+          InfixOperator >/<
+            ForwardSlash >/<
+          Expression >5^6<
+            NospaceExpression >5^6<
+              Expression >5<
+                NospaceExpression >5<
+                  NumericalConstant >5<
+                    SignificandPart >5<
+                      WholeNumberPart >5<
+                        DigitSequence >5<
+                          DecimalDigit >5<
+              InfixOperator >^<
+                Caret >^<
+              Expression >6<
+                NospaceExpression >6<
+                  NumericalConstant >6<
+                    SignificandPart >6<
+                      WholeNumberPart >6<
+                        DigitSequence >6<
+                          DecimalDigit >6<
+==================================
+Formula >(1+2)/3<
+  Expression >(1+2)/3<
+    NospaceExpression >(1+2)/3<
+      Expression >(1+2)<
+        NospaceExpression >(1+2)<
+          OpenParenthesis >(<
+          Expression >1+2<
+            NospaceExpression >1+2<
+              Expression >1<
+                NospaceExpression >1<
+                  NumericalConstant >1<
+                    SignificandPart >1<
+                      WholeNumberPart >1<
+                        DigitSequence >1<
+                          DecimalDigit >1<
+              InfixOperator >+<
+                Plus >+<
+              Expression >2<
+                NospaceExpression >2<
+                  NumericalConstant >2<
+                    SignificandPart >2<
+                      WholeNumberPart >2<
+                        DigitSequence >2<
+                          DecimalDigit >2<
+          CloseParenthesis >)<
+      InfixOperator >/<
+        ForwardSlash >/<
+      Expression >3<
+        NospaceExpression >3<
+          NumericalConstant >3<
+            SignificandPart >3<
+              WholeNumberPart >3<
+                DigitSequence >3<
+                  DecimalDigit >3<
+==================================
+Formula >  (1+3)  <
+  Expression >  (1+3)  <
+    WhiteSpace > <
+    WhiteSpace > <
+    NospaceExpression >(1+3)<
+      OpenParenthesis >(<
+      Expression >1+3<
+        NospaceExpression >1+3<
+          Expression >1<
+            NospaceExpression >1<
+              NumericalConstant >1<
+                SignificandPart >1<
+                  WholeNumberPart >1<
+                    DigitSequence >1<
+                      DecimalDigit >1<
+          InfixOperator >+<
+            Plus >+<
+          Expression >3<
+            NospaceExpression >3<
+              NumericalConstant >3<
+                SignificandPart >3<
+                  WholeNumberPart >3<
+                    DigitSequence >3<
+                      DecimalDigit >3<
+      CloseParenthesis >)<
+    WhiteSpace > <
+    WhiteSpace > <
+==================================
+Formula >-123<
+  Expression >-123<
+    NospaceExpression >-123<
+      NumericalConstant >-123<
+        NegSign >-<
+          Minus >-<
+        SignificandPart >123<
+          WholeNumberPart >123<
+            DigitSequence >123<
+              DecimalDigit >1<
+              DecimalDigit >2<
+              DecimalDigit >3<
+==================================
+Formula >1+2*(-3)<
+  Expression >1+2*(-3)<
+    NospaceExpression >1+2*(-3)<
+      Expression >1<
+        NospaceExpression >1<
+          NumericalConstant >1<
+            SignificandPart >1<
+              WholeNumberPart >1<
+                DigitSequence >1<
+                  DecimalDigit >1<
+      InfixOperator >+<
+        Plus >+<
+      Expression >2*(-3)<
+        NospaceExpression >2*(-3)<
+          Expression >2<
+            NospaceExpression >2<
+              NumericalConstant >2<
+                SignificandPart >2<
+                  WholeNumberPart >2<
+                    DigitSequence >2<
+                      DecimalDigit >2<
+          InfixOperator >*<
+            Asterisk >*<
+          Expression >(-3)<
+            NospaceExpression >(-3)<
+              OpenParenthesis >(<
+              Expression >-3<
+                NospaceExpression >-3<
+                  NumericalConstant >-3<
+                    NegSign >-<
+                      Minus >-<
+                    SignificandPart >3<
+                      WholeNumberPart >3<
+                        DigitSequence >3<
+                          DecimalDigit >3<
+              CloseParenthesis >)<
+==================================
+Formula >1+2*( - 3)<
+  Expression >1+2*( - 3)<
+    NospaceExpression >1+2*( - 3)<
+      Expression >1<
+        NospaceExpression >1<
+          NumericalConstant >1<
+            SignificandPart >1<
+              WholeNumberPart >1<
+                DigitSequence >1<
+                  DecimalDigit >1<
+      InfixOperator >+<
+        Plus >+<
+      Expression >2*( - 3)<
+        NospaceExpression >2*( - 3)<
+          Expression >2<
+            NospaceExpression >2<
+              NumericalConstant >2<
+                SignificandPart >2<
+                  WholeNumberPart >2<
+                    DigitSequence >2<
+                      DecimalDigit >2<
+          InfixOperator >*<
+            Asterisk >*<
+          Expression >( - 3)<
+            NospaceExpression >( - 3)<
+              OpenParenthesis >(<
+              Expression > - 3<
+                WhiteSpace > <
+                NospaceExpression >- 3<
+                  PrefixOperator >-<
+                    Minus >-<
+                  Expression > 3<
+                    WhiteSpace > <
+                    NospaceExpression >3<
+                      NumericalConstant >3<
+                        SignificandPart >3<
+                          WholeNumberPart >3<
+                            DigitSequence >3<
+                              DecimalDigit >3<
+              CloseParenthesis >)<
+==================================
+Formula >12.34<
+  Expression >12.34<
+    NospaceExpression >12.34<
+      NumericalConstant >12.34<
+        SignificandPart >12.34<
+          WholeNumberPart >12<
+            DigitSequence >12<
+              DecimalDigit >1<
+              DecimalDigit >2<
+          FractionalPart >.34<
+            FullStop >.<
+            DigitSequence >34<
+              DecimalDigit >3<
+              DecimalDigit >4<
+==================================
+Formula >.34<
+  Expression >.34<
+    NospaceExpression >.34<
+      NumericalConstant >.34<
+        SignificandPart >.34<
+          FractionalPart >.34<
+            FullStop >.<
+            DigitSequence >34<
+              DecimalDigit >3<
+              DecimalDigit >4<
+==================================
+Formula >-123+456<
+  Expression >-123+456<
+    NospaceExpression >-123+456<
+      Expression >-123<
+        NospaceExpression >-123<
+          NumericalConstant >-123<
+            NegSign >-<
+              Minus >-<
+            SignificandPart >123<
+              WholeNumberPart >123<
+                DigitSequence >123<
+                  DecimalDigit >1<
+                  DecimalDigit >2<
+                  DecimalDigit >3<
+      InfixOperator >+<
+        Plus >+<
+      Expression >456<
+        NospaceExpression >456<
+          NumericalConstant >456<
+            SignificandPart >456<
+              WholeNumberPart >456<
+                DigitSequence >456<
+                  DecimalDigit >4<
+                  DecimalDigit >5<
+                  DecimalDigit >6<
+==================================
+Formula >  (  123 + 456 )  <
+  Expression >  (  123 + 456 )  <
+    WhiteSpace > <
+    WhiteSpace > <
+    NospaceExpression >(  123 + 456 )<
+      OpenParenthesis >(<
+      Expression >  123 + 456 <
+        WhiteSpace > <
+        WhiteSpace > <
+        NospaceExpression >123 + 456<
+          Expression >123 <
+            NospaceExpression >123<
+              NumericalConstant >123<
+                SignificandPart >123<
+                  WholeNumberPart >123<
+                    DigitSequence >123<
+                      DecimalDigit >1<
+                      DecimalDigit >2<
+                      DecimalDigit >3<
+            WhiteSpace > <
+          InfixOperator >+<
+            Plus >+<
+          Expression > 456<
+            WhiteSpace > <
+            NospaceExpression >456<
+              NumericalConstant >456<
+                SignificandPart >456<
+                  WholeNumberPart >456<
+                    DigitSequence >456<
+                      DecimalDigit >4<
+                      DecimalDigit >5<
+                      DecimalDigit >6<
+        WhiteSpace > <
+      CloseParenthesis >)<
+    WhiteSpace > <
+    WhiteSpace > <
+==================================
+Formula >-.34<
+  Expression >-.34<
+    NospaceExpression >-.34<
+      NumericalConstant >-.34<
+        NegSign >-<
+          Minus >-<
+        SignificandPart >.34<
+          FractionalPart >.34<
+            FullStop >.<
+            DigitSequence >34<
+              DecimalDigit >3<
+              DecimalDigit >4<
+==================================
+Formula >-12.34<
+  Expression >-12.34<
+    NospaceExpression >-12.34<
+      NumericalConstant >-12.34<
+        NegSign >-<
+          Minus >-<
+        SignificandPart >12.34<
+          WholeNumberPart >12<
+            DigitSequence >12<
+              DecimalDigit >1<
+              DecimalDigit >2<
+          FractionalPart >.34<
+            FullStop >.<
+            DigitSequence >34<
+              DecimalDigit >3<
+              DecimalDigit >4<
+==================================
+Formula >-(123+456)<
+  Expression >-(123+456)<
+    NospaceExpression >-(123+456)<
+      PrefixOperator >-<
+        Minus >-<
+      Expression >(123+456)<
+        NospaceExpression >(123+456)<
+          OpenParenthesis >(<
+          Expression >123+456<
+            NospaceExpression >123+456<
+              Expression >123<
+                NospaceExpression >123<
+                  NumericalConstant >123<
+                    SignificandPart >123<
+                      WholeNumberPart >123<
+                        DigitSequence >123<
+                          DecimalDigit >1<
+                          DecimalDigit >2<
+                          DecimalDigit >3<
+              InfixOperator >+<
+                Plus >+<
+              Expression >456<
+                NospaceExpression >456<
+                  NumericalConstant >456<
+                    SignificandPart >456<
+                      WholeNumberPart >456<
+                        DigitSequence >456<
+                          DecimalDigit >4<
+                          DecimalDigit >5<
+                          DecimalDigit >6<
+          CloseParenthesis >)<
+==================================
