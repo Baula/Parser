@@ -5,10 +5,13 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class InfixOperator : Symbol
     {
-        public InfixOperator(object operatorSymbol)
+        public InfixOperator(Symbol operatorSymbol)
             : base(operatorSymbol)
         {
+            OperatorSymbol = operatorSymbol;
         }
+
+        private Symbol OperatorSymbol { get; set; }
 
         public static InfixOperator Produce(Symbol symbol)
         {
@@ -25,18 +28,17 @@ namespace SimpleParser.Grammar.NonTerminals
 
         internal double Evaluate(double lhs, double rhs)
         {
-            var operatorSymbol = ConstituentSymbols[0];
-            if (operatorSymbol is Plus)
+            if (OperatorSymbol is Plus)
                 return lhs + rhs;
-            if (operatorSymbol is Minus)
+            if (OperatorSymbol is Minus)
                 return lhs - rhs;
-            if (operatorSymbol is Asterisk)
+            if (OperatorSymbol is Asterisk)
                 return lhs * rhs;
-            if (operatorSymbol is ForwardSlash)
+            if (OperatorSymbol is ForwardSlash)
                 return lhs / rhs;
-            if (operatorSymbol is Caret)
+            if (OperatorSymbol is Caret)
                 return Math.Pow(lhs, rhs);
-            throw new InvalidOperationException(string.Format("Invalid infix operator \"{0}\".", operatorSymbol));
+            throw new InvalidOperationException(string.Format("Invalid infix operator \"{0}\".", OperatorSymbol));
         }
     }
 }

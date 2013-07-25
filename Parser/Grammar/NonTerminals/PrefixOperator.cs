@@ -4,15 +4,17 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class PrefixOperator : Symbol
     {
-        private PrefixOperator(object symbol) 
-            : base(symbol)
+        private PrefixOperator(Symbol operatorSymbol) 
+            : base(operatorSymbol)
         {
+            OperatorSymbol = operatorSymbol;
         }
+
+        private Symbol OperatorSymbol { get; set; }
 
         public double Evaluate(double rhs)
         {
-            var operatorSymbol = ConstituentSymbols[0];
-            return operatorSymbol is Minus
+            return OperatorSymbol is Minus
                        ? -rhs
                        : rhs;
         }

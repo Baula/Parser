@@ -6,13 +6,21 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class DigitSequence : Symbol
     {
+        private int _digitCount;
+
         private DigitSequence(IEnumerable<DecimalDigit> decimalDigits) 
             : base(decimalDigits)
         {
             DecimalDigits = decimalDigits;
+            _digitCount = decimalDigits.Count();
         }
 
         private IEnumerable<DecimalDigit> DecimalDigits { get; set; }
+
+        public int DigitCount
+        {
+            get { return _digitCount; }
+        }
 
         public double Evaluate()
         {

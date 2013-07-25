@@ -17,7 +17,7 @@ namespace SimpleParser.Grammar.NonTerminals
 
         public double Evaluate()
         {
-            var divisor = Math.Pow(10, DigitSequence.ConstituentSymbols.Count);
+            var divisor = Math.Pow(10, DigitSequence.DigitCount);
             return DigitSequence.Evaluate()/divisor;
         }
 
