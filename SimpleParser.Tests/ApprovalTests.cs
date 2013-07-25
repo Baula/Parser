@@ -28,6 +28,7 @@ namespace SimpleParser.Tests
                     "-.34",
                     "-12.34",
                     "-(123+456)",
+                    "(1+2)*(3+4)",  // refer to http://www.3till7.net/2012/04/15/fun-with-gtk/
                 };
 
             var sb = new StringBuilder();

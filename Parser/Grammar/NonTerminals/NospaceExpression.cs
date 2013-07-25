@@ -72,13 +72,6 @@ namespace SimpleParser.Grammar.NonTerminals
             if (!symbols.Any())
                 return null;
 
-            if (symbols.First() is OpenParenthesis && symbols.Last() is CloseParenthesis)
-            {
-                var expression = Expression.Produce(symbols.Skip(1).SkipLast(1));
-                if (expression != null)
-                    return new NospaceExpression(new OpenParenthesis(), expression, new CloseParenthesis());
-            }
-
             // expression, infix-operator, expression
             var z = symbols.Rollup(0, (t, d) =>
                 {
@@ -123,6 +116,13 @@ namespace SimpleParser.Grammar.NonTerminals
                     var infixOperator = new InfixOperator(op.SymbolWithIndex.Symbol);
                     return new NospaceExpression(expressionLeft, infixOperator, expressionRight);
                 }
+            }
+
+            if (symbols.First() is OpenParenthesis && symbols.Last() is CloseParenthesis)
+            {
+                var expression = Expression.Produce(symbols.Skip(1).SkipLast(1));
+                if (expression != null)
+                    return new NospaceExpression(new OpenParenthesis(), expression, new CloseParenthesis());
             }
 
             var numericalConstant = NumericalConstant.Produce(symbols);
