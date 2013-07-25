@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SimpleParser.Grammar.NonTerminals
 {
     public class WholeNumberPart : Symbol
     {
-        public WholeNumberPart(params Object[] symbols) 
-            : base(symbols)
+        private WholeNumberPart(DigitSequence digitSequence)
+            :base(digitSequence)
         {
+            DigitSequence = digitSequence;
+        }
+
+        private DigitSequence DigitSequence { get; set; }
+
+        public double Evaluate()
+        {
+            return DigitSequence.Evaluate();
         }
 
         public static WholeNumberPart Produce(IEnumerable<Symbol> symbols,
@@ -15,7 +22,7 @@ namespace SimpleParser.Grammar.NonTerminals
         {
             // whole-number-part = digit-sequence
 
-            IEnumerable<Symbol> s = null;
+            IEnumerable<Symbol> s;
             var d = DigitSequence.Produce(symbols, out s);
             if (d != null)
             {

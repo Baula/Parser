@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using SimpleParser.Grammar.Terminals;
 using SimpleParser.Tools;
@@ -8,7 +7,7 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class NospaceExpression : Symbol
     {
-        public static Dictionary<string, int> OperatorPrecedence = new Dictionary<string, int>
+        private static readonly Dictionary<string, int> OperatorPrecedence = new Dictionary<string, int>
             {
                 {"^", 3},
                 {"*", 2},
@@ -17,9 +16,50 @@ namespace SimpleParser.Grammar.NonTerminals
                 {"-", 1},
             };
 
-        public NospaceExpression(params Object[] symbols) 
-            : base(symbols)
+        private NospaceExpression(NumericalConstant numericalConstant)
+            : base(numericalConstant)
         {
+            NumericalConstant = numericalConstant;
+        }
+
+        private NospaceExpression(Expression expressionLeft, InfixOperator infixOperator, Expression expressionRight)
+            : base(expressionLeft, infixOperator, expressionRight)
+        {
+            ExpressionLeft = expressionLeft;
+            InfixOperator = infixOperator;
+            ExpressionRight = expressionRight;
+        }
+
+        private NospaceExpression(OpenParenthesis openParenthesis, Expression expression, CloseParenthesis closeParenthesis)
+            : base(openParenthesis, expression, closeParenthesis)
+        {
+            Expression = expression;
+        }
+
+        private NospaceExpression(PrefixOperator prefixOperator, Expression expression) 
+            : base(prefixOperator, expression)
+        {
+            PrefixOperator = prefixOperator;
+            Expression = expression;
+        }
+
+        private PrefixOperator PrefixOperator { get; set; }
+        private Expression Expression { get; set; }
+
+        private NumericalConstant NumericalConstant { get; set; }
+        private Expression ExpressionLeft { get; set; }
+        private InfixOperator InfixOperator { get; set; }
+        private Expression ExpressionRight { get; set; }
+
+        public double Evaluate()
+        {
+            if (NumericalConstant != null) 
+                return NumericalConstant.Evaluate();
+            if (InfixOperator != null)
+                return InfixOperator.Evaluate(ExpressionLeft.Evaluate(), ExpressionRight.Evaluate());
+            if (PrefixOperator == null) 
+                return Expression.Evaluate();
+            return PrefixOperator.Evaluate(Expression.Evaluate());
         }
 
         public static NospaceExpression Produce(IEnumerable<Symbol> symbols)
@@ -34,9 +74,9 @@ namespace SimpleParser.Grammar.NonTerminals
 
             if (symbols.First() is OpenParenthesis && symbols.Last() is CloseParenthesis)
             {
-                var e = Expression.Produce(symbols.Skip(1).SkipLast(1));
-                if (e != null)
-                    return new NospaceExpression(new OpenParenthesis(), e, new CloseParenthesis());
+                var expression = Expression.Produce(symbols.Skip(1).SkipLast(1));
+                if (expression != null)
+                    return new NospaceExpression(new OpenParenthesis(), expression, new CloseParenthesis());
             }
 
             // expression, infix-operator, expression
@@ -72,29 +112,29 @@ namespace SimpleParser.Grammar.NonTerminals
                 if (op != null)
                 {
                     var expressionTokenList1 = symbols.TakeWhile(t => t != op.SymbolWithIndex.Symbol);
-                    var e1 = Expression.Produce(expressionTokenList1);
-                    if (e1 == null)
+                    var expressionLeft = Expression.Produce(expressionTokenList1);
+                    if (expressionLeft == null)
                         throw new ParserException("Invalid expression");
                     var expressionTokenList2 = symbols
                         .SkipWhile(t => t != op.SymbolWithIndex.Symbol).Skip(1);
-                    var e2 = Expression.Produce(expressionTokenList2);
-                    if (e2 == null)
+                    var expressionRight = Expression.Produce(expressionTokenList2);
+                    if (expressionRight == null)
                         throw new ParserException("Invalid expression");
-                    var io = new InfixOperator(op.SymbolWithIndex.Symbol);
-                    return new NospaceExpression(e1, io, e2);
+                    var infixOperator = new InfixOperator(op.SymbolWithIndex.Symbol);
+                    return new NospaceExpression(expressionLeft, infixOperator, expressionRight);
                 }
             }
 
-            var n = NumericalConstant.Produce(symbols);
-            if (n != null)
-                return new NospaceExpression(n);
+            var numericalConstant = NumericalConstant.Produce(symbols);
+            if (numericalConstant != null)
+                return new NospaceExpression(numericalConstant);
 
-            var p = PrefixOperator.Produce(symbols.FirstOrDefault());
-            if (p != null)
+            var prefixOperator = PrefixOperator.Produce(symbols.FirstOrDefault());
+            if (prefixOperator != null)
             {
-                var e = Expression.Produce(symbols.Skip(1));
-                if (e != null)
-                    return new NospaceExpression(p, e);
+                var expression = Expression.Produce(symbols.Skip(1));
+                if (expression != null)
+                    return new NospaceExpression(prefixOperator, expression);
             }
 
             return null;

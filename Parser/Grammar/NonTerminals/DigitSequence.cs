@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using SimpleParser.Grammar.Terminals;
 
@@ -7,9 +6,18 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class DigitSequence : Symbol
     {
-        public DigitSequence(params Object[] symbols) 
-            : base(symbols)
+        private DigitSequence(IEnumerable<DecimalDigit> decimalDigits) 
+            : base(decimalDigits)
         {
+            DecimalDigits = decimalDigits;
+        }
+
+        private IEnumerable<DecimalDigit> DecimalDigits { get; set; }
+
+        public double Evaluate()
+        {
+            return DecimalDigits.Aggregate<DecimalDigit, double>(0,
+                                                                 (sum, digit) => 10*sum + digit.Evaluate());
         }
 
         public static DigitSequence Produce(IEnumerable<Symbol> symbols,
@@ -17,7 +25,8 @@ namespace SimpleParser.Grammar.NonTerminals
         {
             // digit-sequence = 1*decimal-digit
 
-            var digits = symbols.TakeWhile(s => s is DecimalDigit);
+            var digits = symbols.TakeWhile(s => s is DecimalDigit)
+                                .Cast<DecimalDigit>();
             if (digits.Any())
             {
                 symbolsToProcess = symbols.Skip(digits.Count());

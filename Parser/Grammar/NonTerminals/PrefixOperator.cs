@@ -1,13 +1,20 @@
-﻿using System;
-using SimpleParser.Grammar.Terminals;
+﻿using SimpleParser.Grammar.Terminals;
 
 namespace SimpleParser.Grammar.NonTerminals
 {
     public class PrefixOperator : Symbol
     {
-        public PrefixOperator(params Object[] symbols) 
-            : base(symbols)
+        private PrefixOperator(object symbol) 
+            : base(symbol)
         {
+        }
+
+        public double Evaluate(double rhs)
+        {
+            var operatorSymbol = ConstituentSymbols[0];
+            return operatorSymbol is Minus
+                       ? -rhs
+                       : rhs;
         }
 
         public static PrefixOperator Produce(Symbol symbol)

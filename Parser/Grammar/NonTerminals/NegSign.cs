@@ -1,12 +1,11 @@
-﻿using System;
-using SimpleParser.Grammar.Terminals;
+﻿using SimpleParser.Grammar.Terminals;
 
 namespace SimpleParser.Grammar.NonTerminals
 {
     public class NegSign : Symbol
     {
-        public NegSign(params Object[] symbols) 
-            : base(symbols)
+        private NegSign(Minus minus) 
+            : base(minus)
         {
         }
 
@@ -14,9 +13,10 @@ namespace SimpleParser.Grammar.NonTerminals
         {
             // neg-sign = minus
 
-            if (symbol is Minus)
-                return new NegSign(symbol);
-            return null;
+            var minus = symbol as Minus;
+            return minus == null
+                       ? null
+                       : new NegSign(minus);
         }
     }
 }

@@ -20,10 +20,11 @@ namespace SimpleParser
                 var formula = Parser.ParseFormula(formulaAsString);
 
                 Console.WriteLine(formulaAsString);
-                Console.WriteLine(formula);
-                var sb = new StringBuilder();
-                formula.DumpRecursive(sb);
-                Console.WriteLine(sb);
+                Console.WriteLine(formula + " = " + formula.Evaluate());
+                //var sb = new StringBuilder();
+                //formula.DumpRecursive(sb);
+                //Console.WriteLine(sb);
+
             }
             catch (ParserException e)
             {

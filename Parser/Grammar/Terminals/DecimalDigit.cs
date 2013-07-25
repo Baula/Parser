@@ -1,4 +1,6 @@
-﻿namespace SimpleParser.Grammar.Terminals
+﻿using System.Globalization;
+
+namespace SimpleParser.Grammar.Terminals
 {
     public class DecimalDigit : Symbol
     {
@@ -6,7 +8,12 @@
 
         public DecimalDigit(char c)
         {
-            _characterValue = c.ToString();
+            _characterValue = c.ToString(CultureInfo.InvariantCulture);
+        }
+
+        public double Evaluate()
+        {
+            return int.Parse(_characterValue);
         }
 
         public override string ToString()

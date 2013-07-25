@@ -1,33 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace SimpleParser.Grammar.NonTerminals
 {
     public class SignificandPart : Symbol
     {
-        public SignificandPart(params Object[] symbols) 
-            : base(symbols)
+        private SignificandPart(WholeNumberPart wholeNumberPart)
+            : base(wholeNumberPart)
         {
+            WholeNumberPart = wholeNumberPart;
+        }
+
+        private SignificandPart(FractionalPart fractionalPart)
+            : base(fractionalPart)
+        {
+            FractionalPart = fractionalPart;
+        }
+
+        private SignificandPart(WholeNumberPart wholeNumberPart, FractionalPart fractionalPart) 
+            : base(wholeNumberPart, fractionalPart)
+        {
+            WholeNumberPart = wholeNumberPart;
+            FractionalPart = fractionalPart;
+        }
+
+        private FractionalPart FractionalPart { get; set; }
+        private WholeNumberPart WholeNumberPart { get; set; }
+
+        public double Evaluate()
+        {
+            double d = 0;
+            if (WholeNumberPart != null)
+            {
+                d = WholeNumberPart.Evaluate();
+            }
+            if (FractionalPart != null)
+            {
+                d += FractionalPart.Evaluate();
+            }
+            return d;
         }
 
         public static SignificandPart Produce(IEnumerable<Symbol> symbols)
         {
             // significand-part = whole-number-part [fractional-part] / fractional-part
 
-            FractionalPart f;
-            f = FractionalPart.Produce(symbols);
-            if (f != null)
-                return new SignificandPart(f);
-            IEnumerable<Symbol> s;
-            var w = WholeNumberPart.Produce(symbols, out s);
-            if (w != null)
+            var fractionalPart = FractionalPart.Produce(symbols);
+            if (fractionalPart != null)
+                return new SignificandPart(fractionalPart);
+            IEnumerable<Symbol> symbolsToProcess;
+            var wholeNumberPart = WholeNumberPart.Produce(symbols, out symbolsToProcess);
+            if (wholeNumberPart != null)
             {
-                if (!s.Any())
-                    return new SignificandPart(w);
-                f = FractionalPart.Produce(s);
-                if (f != null)
-                    return new SignificandPart(w, f);
+                if (!symbolsToProcess.Any())
+                    return new SignificandPart(wholeNumberPart);
+                fractionalPart = FractionalPart.Produce(symbolsToProcess);
+                if (fractionalPart != null)
+                    return new SignificandPart(wholeNumberPart, fractionalPart);
             }
             return null;
         }
