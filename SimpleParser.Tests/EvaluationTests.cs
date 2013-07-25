@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SimpleParser.Tests
 {
@@ -21,6 +22,12 @@ namespace SimpleParser.Tests
         public void Evaluate_FractionalNumberWithoutWholePart()
         {
             AssertEvaluate(".123", .123);
+        }
+
+        [TestMethod]
+        public void Evaluate_FractionalNumberWithManyTrailingZeros()
+        {
+            AssertEvaluate(".1230000000000000000000000000000000000000000000", .123);
         }
 
         [TestMethod]
@@ -84,7 +91,11 @@ namespace SimpleParser.Tests
             // Act
             var actual = formula.Evaluate();
 
-            Assert.AreEqual(expectedEvaluationResult, actual);
+            // Assert
+            var maxDelta = Math.Pow(2, -56);
+            Assert.AreEqual(expectedEvaluationResult, actual,
+                            maxDelta,
+                            string.Format("Difference is {0:g}", actual - expectedEvaluationResult));
         }
     }
 }
