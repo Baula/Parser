@@ -7,7 +7,7 @@ namespace SimpleParser.Tools
 {
     public static class StringExtensions
     {
-        public static string StringConcatenate(this IEnumerable<string> source)
+        public static string Concatenate(this IEnumerable<string> source)
         {
             var sb = new StringBuilder();
             foreach (var s in source)

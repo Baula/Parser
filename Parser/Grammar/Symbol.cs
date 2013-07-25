@@ -7,6 +7,8 @@ namespace SimpleParser.Grammar
 {
     public abstract class Symbol
     {
+        private readonly List<Symbol> _constituentSymbols;
+
         protected Symbol()
         {
         }
@@ -24,15 +26,17 @@ namespace SimpleParser.Grammar
                     // If this error is thrown, the parser is coded incorrectly.
                     throw new ParserException("Internal error");
             }
-            ConstituentSymbols = ls;
+            _constituentSymbols = ls;
         }
 
-        public List<Symbol> ConstituentSymbols { get; set; }
+        public List<Symbol> ConstituentSymbols
+        {
+            get { return _constituentSymbols; }
+        }
 
         public override string ToString()
         {
-            var s = ConstituentSymbols.Select(ct => ct.ToString()).StringConcatenate();
-            return s;
+            return ConstituentSymbols.Select(cs => cs.ToString()).Concatenate();
         }
     }
 }
