@@ -58,7 +58,7 @@
     <Compile Include="Grammar\NonTerminals\PrefixOperator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Grammar\NonTerminals\SignificandPart.cs" />
+    <Compile Include="Grammar\NonTerminals\AbsoluteValue.cs" />
     <Compile Include="Grammar\Symbol.cs" />
     <Compile Include="Grammar\NonTerminals\WholeNumberPart.cs" />
     <Compile Include="Grammar\Terminals\ForwardSlash.cs" />

@@ -3,21 +3,21 @@ using System.Linq;
 
 namespace SimpleParser.Grammar.NonTerminals
 {
-    public class SignificandPart : Symbol
+    public class AbsoluteValue : Symbol
     {
-        private SignificandPart(WholeNumberPart wholeNumberPart)
+        private AbsoluteValue(WholeNumberPart wholeNumberPart)
             : base(wholeNumberPart)
         {
             WholeNumberPart = wholeNumberPart;
         }
 
-        private SignificandPart(FractionalPart fractionalPart)
+        private AbsoluteValue(FractionalPart fractionalPart)
             : base(fractionalPart)
         {
             FractionalPart = fractionalPart;
         }
 
-        private SignificandPart(WholeNumberPart wholeNumberPart, FractionalPart fractionalPart) 
+        private AbsoluteValue(WholeNumberPart wholeNumberPart, FractionalPart fractionalPart) 
             : base(wholeNumberPart, fractionalPart)
         {
             WholeNumberPart = wholeNumberPart;
@@ -41,22 +41,24 @@ namespace SimpleParser.Grammar.NonTerminals
             return d;
         }
 
-        public static SignificandPart Produce(IEnumerable<Symbol> symbols)
+        public static AbsoluteValue Produce(IEnumerable<Symbol> symbols)
         {
-            // significand-part = whole-number-part [fractional-part] / fractional-part
+            // absolute-value = whole-number-part [fractional-part] / fractional-part
 
             var fractionalPart = FractionalPart.Produce(symbols);
             if (fractionalPart != null)
-                return new SignificandPart(fractionalPart);
+                return new AbsoluteValue(fractionalPart);
+
             IEnumerable<Symbol> symbolsToProcess;
             var wholeNumberPart = WholeNumberPart.Produce(symbols, out symbolsToProcess);
             if (wholeNumberPart != null)
             {
                 if (!symbolsToProcess.Any())
-                    return new SignificandPart(wholeNumberPart);
+                    return new AbsoluteValue(wholeNumberPart);
+
                 fractionalPart = FractionalPart.Produce(symbolsToProcess);
                 if (fractionalPart != null)
-                    return new SignificandPart(wholeNumberPart, fractionalPart);
+                    return new AbsoluteValue(wholeNumberPart, fractionalPart);
             }
             return null;
         }

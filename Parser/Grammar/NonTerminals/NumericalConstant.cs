@@ -5,44 +5,46 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class NumericalConstant : Symbol
     {
-        private NumericalConstant(SignificandPart significandPart)
-            : base(significandPart)
+        private NumericalConstant(AbsoluteValue absoluteValue)
+            : base(absoluteValue)
         {
-            SignificandPart = significandPart;
+            AbsoluteValue = absoluteValue;
         }
 
-        private NumericalConstant(NegSign negSign, SignificandPart significandPart) 
-            : base(negSign, significandPart)
+        private NumericalConstant(NegSign negSign, AbsoluteValue absoluteValue) 
+            : base(negSign, absoluteValue)
         {
             NegSign = negSign;
-            SignificandPart = significandPart;
+            AbsoluteValue = absoluteValue;
         }
 
         private NegSign NegSign { get; set; }
-        private SignificandPart SignificandPart { get; set; }
+        private AbsoluteValue AbsoluteValue { get; set; }
 
         public double Evaluate()
         {
             var sign = (NegSign != null)
                            ? -1
                            : 1;
-            return sign*SignificandPart.Evaluate();
+            return sign*AbsoluteValue.Evaluate();
         }
 
         public static NumericalConstant Produce(IEnumerable<Symbol> symbols)
         {
-            // numerical-constant = [neg-sign] significand-part
+            // numerical-constant = [neg-sign] absolute-value
 
-            var significandPart = SignificandPart.Produce(symbols);
-            if (significandPart != null)
-                return new NumericalConstant(significandPart);
+            var absoluteValue = AbsoluteValue.Produce(symbols);
+            if (absoluteValue != null)
+                return new NumericalConstant(absoluteValue);
+
             var negSign = NegSign.Produce(symbols.First());
             if (negSign != null)
             {
-                var significandPart2 = SignificandPart.Produce(symbols.Skip(1));
-                if (significandPart2 != null)
-                    return new NumericalConstant(negSign, significandPart2);
+                var absoluteValue2 = AbsoluteValue.Produce(symbols.Skip(1));
+                if (absoluteValue2 != null)
+                    return new NumericalConstant(negSign, absoluteValue2);
             }
+
             return null;
         }
     }

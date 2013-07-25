@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Text;
 using ApprovalTests;
+using ApprovalTests.Reporters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SimpleParser.Tools;
 
 namespace SimpleParser.Tests
 {
+    [UseReporter(typeof(DiffReporter))]
     [TestClass]
     public class ApprovalTests
     {
