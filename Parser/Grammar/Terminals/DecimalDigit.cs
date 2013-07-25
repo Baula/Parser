@@ -4,21 +4,21 @@ namespace SimpleParser.Grammar.Terminals
 {
     public class DecimalDigit : Symbol
     {
-        private readonly string _characterValue;
+        private readonly int _value;
 
         public DecimalDigit(char c)
         {
-            _characterValue = c.ToString(CultureInfo.InvariantCulture);
+            _value = int.Parse(c.ToString(CultureInfo.InvariantCulture));
         }
 
-        public double Evaluate()
+        public int Value
         {
-            return int.Parse(_characterValue);
+            get { return _value; }
         }
 
         public override string ToString()
         {
-            return _characterValue;
+            return Value.ToString(CultureInfo.InvariantCulture);
         }
     }
 }

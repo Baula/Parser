@@ -4,17 +4,17 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class WholeNumberPart : Symbol
     {
+        private readonly double _value;
+
         private WholeNumberPart(DigitSequence digitSequence)
             :base(digitSequence)
         {
-            DigitSequence = digitSequence;
+            _value = digitSequence.Value;
         }
-
-        private DigitSequence DigitSequence { get; set; }
 
         public double Evaluate()
         {
-            return DigitSequence.Evaluate();
+            return _value;
         }
 
         public static WholeNumberPart Produce(IEnumerable<Symbol> symbols,

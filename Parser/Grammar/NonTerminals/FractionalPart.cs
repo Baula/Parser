@@ -7,18 +7,18 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class FractionalPart : Symbol
     {
-        private FractionalPart(FullStop fullStop, DigitSequence digitSequence) 
+        private readonly double _value;
+
+        private FractionalPart(FullStop fullStop, DigitSequence digitSequence)
             : base(fullStop, digitSequence)
         {
-            DigitSequence = digitSequence;
+            var divisor = Math.Pow(10, digitSequence.DigitCount);
+            _value = digitSequence.Value/divisor;
         }
 
-        private DigitSequence DigitSequence { get; set; }
-
-        public double Evaluate()
+        public double Value
         {
-            var divisor = Math.Pow(10, DigitSequence.DigitCount);
-            return DigitSequence.Evaluate()/divisor;
+            get { return _value; }
         }
 
         public static FractionalPart Produce(IEnumerable<Symbol> symbols)

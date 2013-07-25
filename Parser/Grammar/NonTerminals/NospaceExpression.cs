@@ -54,7 +54,7 @@ namespace SimpleParser.Grammar.NonTerminals
         public double Evaluate()
         {
             if (NumericalConstant != null) 
-                return NumericalConstant.Evaluate();
+                return NumericalConstant.Value;
             if (InfixOperator != null)
                 return InfixOperator.Evaluate(ExpressionLeft.Evaluate(), ExpressionRight.Evaluate());
             if (PrefixOperator == null) 

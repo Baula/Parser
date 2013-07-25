@@ -6,26 +6,24 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class DigitSequence : Symbol
     {
-        private int _digitCount;
+        private readonly int _digitCount;
+        private readonly double _value;
 
-        private DigitSequence(IEnumerable<DecimalDigit> decimalDigits) 
+        private DigitSequence(IEnumerable<DecimalDigit> decimalDigits)
             : base(decimalDigits)
         {
-            DecimalDigits = decimalDigits;
             _digitCount = decimalDigits.Count();
+            _value = decimalDigits.Aggregate<DecimalDigit, double>(0, (sum, digit) => 10*sum + digit.Value);
         }
-
-        private IEnumerable<DecimalDigit> DecimalDigits { get; set; }
 
         public int DigitCount
         {
             get { return _digitCount; }
         }
 
-        public double Evaluate()
+        public double Value
         {
-            return DecimalDigits.Aggregate<DecimalDigit, double>(0,
-                                                                 (sum, digit) => 10*sum + digit.Evaluate());
+            get { return _value; }
         }
 
         public static DigitSequence Produce(IEnumerable<Symbol> symbols,

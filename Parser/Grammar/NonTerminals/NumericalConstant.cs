@@ -5,28 +5,23 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class NumericalConstant : Symbol
     {
+        private readonly double _value;
+
         private NumericalConstant(AbsoluteValue absoluteValue)
             : base(absoluteValue)
         {
-            AbsoluteValue = absoluteValue;
+            _value = absoluteValue.Value;
         }
 
         private NumericalConstant(NegSign negSign, AbsoluteValue absoluteValue) 
             : base(negSign, absoluteValue)
         {
-            NegSign = negSign;
-            AbsoluteValue = absoluteValue;
+            _value = -absoluteValue.Value;
         }
 
-        private NegSign NegSign { get; set; }
-        private AbsoluteValue AbsoluteValue { get; set; }
-
-        public double Evaluate()
+        public double Value
         {
-            var sign = (NegSign != null)
-                           ? -1
-                           : 1;
-            return sign*AbsoluteValue.Evaluate();
+            get { return _value; }
         }
 
         public static NumericalConstant Produce(IEnumerable<Symbol> symbols)

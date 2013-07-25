@@ -5,40 +5,30 @@ namespace SimpleParser.Grammar.NonTerminals
 {
     public class AbsoluteValue : Symbol
     {
+        private readonly double _value;
+
         private AbsoluteValue(WholeNumberPart wholeNumberPart)
             : base(wholeNumberPart)
         {
-            WholeNumberPart = wholeNumberPart;
+            _value = wholeNumberPart.Evaluate();
         }
 
         private AbsoluteValue(FractionalPart fractionalPart)
             : base(fractionalPart)
         {
-            FractionalPart = fractionalPart;
+            _value = fractionalPart.Value;
         }
 
         private AbsoluteValue(WholeNumberPart wholeNumberPart, FractionalPart fractionalPart) 
             : base(wholeNumberPart, fractionalPart)
         {
-            WholeNumberPart = wholeNumberPart;
-            FractionalPart = fractionalPart;
+            _value = wholeNumberPart.Evaluate() +
+                     fractionalPart.Value;
         }
 
-        private FractionalPart FractionalPart { get; set; }
-        private WholeNumberPart WholeNumberPart { get; set; }
-
-        public double Evaluate()
+        public double Value
         {
-            double d = 0;
-            if (WholeNumberPart != null)
-            {
-                d = WholeNumberPart.Evaluate();
-            }
-            if (FractionalPart != null)
-            {
-                d += FractionalPart.Evaluate();
-            }
-            return d;
+            get { return _value; }
         }
 
         public static AbsoluteValue Produce(IEnumerable<Symbol> symbols)
