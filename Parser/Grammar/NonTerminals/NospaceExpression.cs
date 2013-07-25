@@ -73,6 +73,29 @@ namespace SimpleParser.Grammar.NonTerminals
                 return null;
 
             // expression, infix-operator, expression
+            var infixOperation = ProduceInfixOperation(symbols);
+            if (infixOperation != null) 
+                return infixOperation;
+
+            // open-parenthesis expression close-parenthesis
+            var enclosedExpression = ProduceEnclosedExpression(symbols);
+            if (enclosedExpression != null) 
+                return enclosedExpression;
+
+            // numerical-constant
+            var numericConstantExpression = ProduceNumericConstantExpression(symbols);
+            if (numericConstantExpression != null) 
+                return numericConstantExpression;
+
+            var prefixedExpression = ProducePrefixedExpression(symbols);
+            if (prefixedExpression != null)
+                return prefixedExpression;
+
+            return null;
+        }
+
+        private static NospaceExpression ProduceInfixOperation(IEnumerable<Symbol> symbols)
+        {
             var z = symbols.Rollup(0, (t, d) =>
                 {
                     if (t is OpenParenthesis)
@@ -117,27 +140,42 @@ namespace SimpleParser.Grammar.NonTerminals
                     return new NospaceExpression(expressionLeft, infixOperator, expressionRight);
                 }
             }
+            return null;
+        }
 
+        private static NospaceExpression ProduceEnclosedExpression(IEnumerable<Symbol> symbols)
+        {
             if (symbols.First() is OpenParenthesis && symbols.Last() is CloseParenthesis)
             {
                 var expression = Expression.Produce(symbols.Skip(1).SkipLast(1));
                 if (expression != null)
                     return new NospaceExpression(new OpenParenthesis(), expression, new CloseParenthesis());
             }
+            return null;
+        }
 
+        private static NospaceExpression ProduceNumericConstantExpression(IEnumerable<Symbol> symbols)
+        {
             var numericalConstant = NumericalConstant.Produce(symbols);
             if (numericalConstant != null)
                 return new NospaceExpression(numericalConstant);
+            return null;
+        }
 
+        private static NospaceExpression ProducePrefixedExpression(IEnumerable<Symbol> symbols)
+        {
             var prefixOperator = PrefixOperator.Produce(symbols.FirstOrDefault());
+            NospaceExpression retVal = null;
             if (prefixOperator != null)
             {
                 var expression = Expression.Produce(symbols.Skip(1));
                 if (expression != null)
-                    return new NospaceExpression(prefixOperator, expression);
+                {
+                    retVal = new NospaceExpression(prefixOperator, expression);
+                }
             }
 
-            return null;
+            return retVal;
         }
     }
 }
