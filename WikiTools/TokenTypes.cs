@@ -1,5 +1,4 @@
-﻿
-namespace WikiTools
+﻿namespace WikiTools
 {
     public interface IToken
     {
