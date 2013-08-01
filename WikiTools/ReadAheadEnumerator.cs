@@ -6,7 +6,6 @@ namespace WikiTools
 {
     public class ReadAheadEnumerator<T> : IEnumerator<T>
     {
-        private readonly IEnumerable<T> _sequence;
         private bool _hasBeenCalled = false;
         private readonly IEnumerator<T> _enumerator;
         private bool _itemAheadIsValid;
@@ -61,21 +60,8 @@ namespace WikiTools
         {
             get
             {
-                //var aheadEnum = _sequence.GetEnumerator();
-                //for (var i = 1; i <= itemCount; i++)
-                //{
-                //    var couldMove = aheadEnum.MoveNext();
-                //    if (!couldMove)
-                //        return false;
-                //}
                 return _itemAheadIsValid;
-                //return itemCount <= _sequence.Count();
             }
-        }
-
-        public T ReadAhead(int itemCount)
-        {
-            return _sequence.Last();
         }
 
         public void Dispose()
