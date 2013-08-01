@@ -27,12 +27,10 @@ namespace WikiTools.Grammar
         public static IEnumerable<TTarget> TakeWhileOfType<T, TTarget>(this IEnumerator<T> enumer)
             where TTarget : T
         {
-            var l = new List<TTarget>();
             while (enumer.MoveNext() && enumer.Current is TTarget)
             {
-                l.Add((TTarget)enumer.Current);
+                yield return (TTarget)enumer.Current;
             }
-            return l;
         }
     }
 }
