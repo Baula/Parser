@@ -39,20 +39,13 @@ namespace WikiTools
                 return new Character(c);
             if (c == ' ' || c == '\t')
                 return new Character(c);
+            if (@".:,;-/\(){}#+*".Contains(c))
+                return new Character(c);
             if (c == '\r' && enumerator.CanReadAhead && enumerator.ItemAhead == '\n')
             {
                 enumerator.MoveNext();
                 return new EOL();
             }
-            throw new ArgumentOutOfRangeException("c", string.Format("'{0}' is not a supported character.", c));
-        }
-
-        private IToken GetToken(char c)
-        {
-            if (char.IsLetterOrDigit(c))
-                return new Character(c);
-            if (c == ' ' || c == '\t')
-                return new Character(c);
             throw new ArgumentOutOfRangeException("c", string.Format("'{0}' is not a supported character.", c));
         }
     }

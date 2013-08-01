@@ -9,9 +9,14 @@ namespace WikiTools.Grammar
 
         public WikiText(IEnumerable<IToken> tokens)
         {
+            var tokenEnum = tokens.GetEnumerator();
             _lines = new List<Line>();
-            var line = Line.Produce(tokens);
-            _lines.Add(line);
+            var line = Line.Produce(tokenEnum);
+            while (line != null)
+            {
+                _lines.Add(line);
+                line = Line.Produce(tokenEnum);
+            }
             this._tokens = tokens;
         }
 

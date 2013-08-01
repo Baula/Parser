@@ -58,6 +58,12 @@ namespace WikiTools.Tests
         }
 
         [TestMethod]
+        public void SpecialCharactersButBrackets_ReturnCharacters()
+        {
+            AssertAreAllCharacters(@".:,;-/\(){}#+*");
+        }
+
+        [TestMethod]
         public void CrLf_ReturnsEOL()
         {
             var actual = _tokenizer.Tokenize("\r\n");

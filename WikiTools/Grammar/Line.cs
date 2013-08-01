@@ -8,15 +8,20 @@ namespace WikiTools.Grammar
     {
         public string Value { get; set; }
 
-        internal static Line Produce(IEnumerable<IToken> tokens)
+        internal static Line Produce(IEnumerator<IToken> tokenEnum)
         {
+            if (tokenEnum.Current is EOF)
+                return null;
+
             var sb = new StringBuilder();
-            foreach (var c in tokens.TakeWhile(t => t is Character).Cast<Character>())
+            while (tokenEnum.MoveNext())
             {
+                var c = tokenEnum.Current as Character;
+                if (c == null)
+                    break;
                 sb.Append(c.Value);
             }
-            var line = new Line { Value = sb.ToString() };
-            return line;
+            return new Line { Value = sb.ToString() };
         }
     }
 }
