@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnumeratorExtensions.cs" />
     <Compile Include="Grammar\Line.cs" />
     <Compile Include="Grammar\WikiText.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
