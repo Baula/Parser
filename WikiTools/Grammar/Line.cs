@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -13,15 +14,25 @@ namespace WikiTools.Grammar
             if (tokenEnum.Current is EOF)
                 return null;
 
-            var sb = new StringBuilder();
-            while (tokenEnum.MoveNext())
+            return new Line
             {
-                var c = tokenEnum.Current as Character;
-                if (c == null)
-                    break;
-                sb.Append(c.Value);
+                Value = tokenEnum.TakeWhileOfType<IToken, Character>()
+                                 .Aggregate<Character, string>("", (s, c) => s += c.Value)
+            };
+        }
+    }
+
+    public static class EnumeratorExtensions
+    {
+        public static IEnumerable<TTarget> TakeWhileOfType<T, TTarget>(this IEnumerator<T> enumer)
+            where TTarget : T
+        {
+            var l = new List<TTarget>();
+            while (enumer.MoveNext() && enumer.Current is TTarget)
+            {
+                l.Add((TTarget)enumer.Current);
             }
-            return new Line { Value = sb.ToString() };
+            return l;
         }
     }
 }

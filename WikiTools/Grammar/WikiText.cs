@@ -4,7 +4,6 @@ namespace WikiTools.Grammar
 {
     public class WikiText
     {
-        private IEnumerable<IToken> _tokens;
         private List<Line> _lines;
 
         public WikiText(IEnumerable<IToken> tokens)
@@ -17,7 +16,6 @@ namespace WikiTools.Grammar
                 _lines.Add(line);
                 line = Line.Produce(tokenEnum);
             }
-            this._tokens = tokens;
         }
 
         public List<Line> Lines { get { return _lines; } }
