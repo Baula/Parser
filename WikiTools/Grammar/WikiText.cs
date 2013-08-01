@@ -6,7 +6,7 @@ namespace WikiTools.Grammar
     {
         private List<Line> _lines;
 
-        public WikiText(IEnumerable<IToken> tokens)
+        private WikiText(IEnumerable<IToken> tokens)
         {
             var tokenEnum = tokens.GetEnumerator();
             _lines = new List<Line>();
@@ -16,6 +16,11 @@ namespace WikiTools.Grammar
                 _lines.Add(line);
                 line = Line.Produce(tokenEnum);
             }
+        }
+
+        public static WikiText Produce(IEnumerable<IToken> tokens)
+        {
+            return new WikiText(tokens);
         }
 
         public List<Line> Lines { get { return _lines; } }

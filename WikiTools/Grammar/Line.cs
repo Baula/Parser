@@ -8,6 +8,9 @@ namespace WikiTools.Grammar
     public class Line
     {
         public string Value { get; set; }
+        
+        private Line ()
+	    { }
 
         internal static Line Produce(IEnumerator<IToken> tokenEnum)
         {

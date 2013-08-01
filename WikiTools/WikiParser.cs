@@ -14,7 +14,7 @@ namespace WikiTools
         public WikiText Parse(string inputText)
         {
             var tokens = _tokenizer.Tokenize(inputText);
-            return new WikiText(tokens);
+            return WikiText.Produce(tokens);
         }
     }
 }
