@@ -18,7 +18,7 @@ namespace ParserTechPlayground
     {
         public Assignment Parse(string input)
         {
-            var tokens = Tokenize(input);
+            var tokens = new Tokenizer().Tokenize(input);
 
             var assignment = GetAssignment(tokens);
             if (assignment == null)
@@ -48,20 +48,6 @@ namespace ParserTechPlayground
             return new Assignment(assignee, assigner);
         }
 
-        private EOF GetEOF(TokenBuffer tokens)
-        {
-            if (tokens.Current is EOF)
-                return (EOF)tokens.GetAndConsumeCurrent();
-            return null;
-        }
-
-        private AssignmentOperator GetAssignOp(TokenBuffer tokens)
-        {
-            if (tokens.Current is AssignmentOperator)
-                return (AssignmentOperator)tokens.GetAndConsumeCurrent();
-            return null;
-        }
-
         private Identifier GetIdentifier(TokenBuffer tokens)
         {
             var characters = new List<Character>();
@@ -78,32 +64,27 @@ namespace ParserTechPlayground
             return new Identifier(characters);
         }
 
+        private EOF GetEOF(TokenBuffer tokens)
+        {
+            return Get<EOF>(tokens);
+        }
+
+        private AssignmentOperator GetAssignOp(TokenBuffer tokens)
+        {
+            return Get<AssignmentOperator>(tokens);
+        }
+
         private Character GetCharacter(TokenBuffer tokens)
         {
-            if (tokens.Current is Character)
-                return (Character)tokens.GetAndConsumeCurrent();
-            return null;
+            return Get<Character>(tokens);
         }
 
-        private TokenBuffer Tokenize(string input)
+        private static T Get<T>(TokenBuffer tokens)
+            where T : IToken
         {
-            var buffer = new TokenBuffer();
-            foreach (var c in input)
-            {
-                var token = GetToken(c);
-                buffer.Add(token);
-            }
-            buffer.Add(new EOF());
-            return buffer;
-        }
-
-        private IToken GetToken(char c)
-        {
-            if (char.IsLetter(c))
-                return new Character(c);
-            if (c == '=')
-                return new AssignmentOperator();
-            throw new ParseException(string.Format("Invalid character '{0}'.", c));
+            if (tokens.Current is T)
+                return (T)tokens.GetAndConsumeCurrent();
+            return default(T);
         }
     }
 }
