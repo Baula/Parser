@@ -18,5 +18,22 @@ namespace ParserTechPlayground
         {
             get { return _name; }
         }
+
+        // Identifier   : Character+
+        internal static Identifier Produce(TokenBuffer tokens)
+        {
+            var characters = new List<Character>();
+            var character = tokens.GetTerminal<Character>();
+            if (character == null)
+                return null;
+
+            while (character != null)
+            {
+                characters.Add(character);
+                character = tokens.GetTerminal<Character>();
+            }
+
+            return new Identifier(characters);
+        }
     }
 }
