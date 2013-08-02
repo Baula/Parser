@@ -44,5 +44,17 @@ namespace ParserTechPlayground.Tests
             Assert.IsTrue(result.Assigner.AddSub.Operator.IsPlusNotMinus);
             Assert.AreEqual("two", result.Assigner.AddSub.Right.Identifier.Name);
         }
+
+        [TestMethod]
+        public void ExpressionIsAdditionOfNumbers()
+        {
+            var result = _parser.Parse("left=123+456");
+
+            Assert.IsNotNull(result, "The result should not be null.");
+            Assert.AreEqual("left", result.Assignee.Name);
+            Assert.AreEqual(123, result.Assigner.AddSub.Left.Number.Value);
+            Assert.IsTrue(result.Assigner.AddSub.Operator.IsPlusNotMinus);
+            Assert.AreEqual(456, result.Assigner.AddSub.Right.Number.Value);
+        }
     }
 }
