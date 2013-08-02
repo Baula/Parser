@@ -7,7 +7,8 @@ namespace ParserTechPlayground
      * 
      * - Non-Terminals
      * Assignment   : Identifier AssignOp Expression EOF
-     * Expression   : Identifier | Number
+     * Expression   : Value
+     * Value        : Identifier | Number
      * Number       : Digits
      * Digits       : Digit+
      * Identifier   : Character+

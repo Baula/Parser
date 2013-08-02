@@ -4,32 +4,21 @@ namespace ParserTechPlayground
 {
     public class Expression : IToken
     {
-        private readonly Identifier _identifier;
-        private readonly Number _number;
+        private readonly Value _value;
 
-        public Expression(Identifier identifier)
+        public Expression(Value value)
         {
-            _identifier = identifier;
+            _value = value;
         }
 
-        public Expression(Number number)
-        {
-            _number = number;
-        }
+        public Value Value { get { return _value; } }
 
-        public Identifier Identifier { get { return _identifier; } }
-        public Number Number { get { return _number; } }
-
-        // Expression   : Identifier | Number
+        // Expression   : Value
         internal static Expression Produce(TokenBuffer tokens)
         {
-            var identifier = Identifier.Produce(tokens);
-            if (identifier != null)
-                return new Expression(identifier);
-
-            var number = Number.Produce(tokens);
-            if (number != null)
-                return new Expression(number);
+            var value = Value.Produce(tokens);
+            if (value != null)
+                return new Expression(value);
 
             return null;
         }

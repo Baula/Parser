@@ -20,7 +20,7 @@ namespace ParserTechPlayground.Tests
 
             Assert.IsNotNull(result, "The result should not be null.");
             Assert.AreEqual("left", result.Assignee.Name);
-            Assert.AreEqual("right", result.Assigner.Identifier.Name);
+            Assert.AreEqual("right", result.Assigner.Value.Identifier.Name);
         }
 
         [TestMethod]
@@ -30,7 +30,17 @@ namespace ParserTechPlayground.Tests
 
             Assert.IsNotNull(result, "The result should not be null.");
             Assert.AreEqual("left", result.Assignee.Name);
-            Assert.AreEqual(123, result.Assigner.Number.Value);
+            Assert.AreEqual(123, result.Assigner.Value.Number.Value);
+        }
+
+        [TestMethod]
+        public void ExpressionIsAdditionOfIdentifiers()
+        {
+            var result = _parser.Parse("left=one+two");
+
+            Assert.IsNotNull(result, "The result should not be null.");
+            Assert.AreEqual("left", result.Assignee.Name);
+            Assert.AreEqual(123, result.Assigner.Value.Number.Value);
         }
     }
 }
