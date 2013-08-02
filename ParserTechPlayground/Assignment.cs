@@ -1,11 +1,12 @@
 ﻿namespace ParserTechPlayground
 {
+    // Assignment   : Identifier AssignOp Expression EOF
     public class Assignment
     {
         private Identifier _assignee;
-        private Identifier _assigner;
+        private Expression _assigner;
 
-        public Assignment(Identifier assignee, Identifier assigner)
+        public Assignment(Identifier assignee, Expression assigner)
         {
             _assignee = assignee;
             _assigner = assigner;
@@ -16,7 +17,7 @@
             get { return _assignee; }
         }
 
-        public Identifier Assigner
+        public Expression Assigner
         {
             get { return _assigner; }
         }
@@ -33,9 +34,9 @@
                 //throw new ParseException("Expected assignment operator.");
                 return null;
 
-            var assigner = Identifier.Produce(tokens);
+            var assigner = Expression.Produce(tokens);
             if (assigner == null)
-                //throw new ParseException("Expected identifier for the assigner after assignment operator.");
+                //throw new ParseException("Expected expression for the assigner after assignment operator.");
                 return null;
 
             return new Assignment(assignee, assigner);

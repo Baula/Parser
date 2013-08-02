@@ -20,7 +20,7 @@ namespace ParserTechPlayground.Tests
 
             Assert.IsNotNull(result, "The result should not be null.");
             Assert.AreEqual("left", result.Assignee.Name);
-            Assert.AreEqual("right", result.Assigner.Name);
+            Assert.AreEqual("right", result.Assigner.Identifier.Name);
         }
     }
 }

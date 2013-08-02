@@ -6,7 +6,8 @@ namespace ParserTechPlayground
          Grammar:
      * 
      * - Non-Terminals
-     * Assignment   : Identifier AssignOp Identifier EOF
+     * Assignment   : Identifier AssignOp Expression EOF
+     * Expression   : Identifier
      * Identifier   : Character+
      * 
      * - Terminals

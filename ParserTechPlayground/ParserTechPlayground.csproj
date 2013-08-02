@@ -44,6 +44,7 @@
     <Compile Include="CalculationParser.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="EOF.cs" />
+    <Compile Include="Expression.cs" />
     <Compile Include="Identifier.cs" />
     <Compile Include="IToken.cs" />
     <Compile Include="ParseException.cs" />
