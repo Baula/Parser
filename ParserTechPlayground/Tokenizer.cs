@@ -18,6 +18,8 @@
         {
             if (char.IsLetter(c))
                 return new Character(c);
+            if (char.IsNumber(c))
+                return new Digit(c);
             if (c == '=')
                 return new AssignmentOperator();
             throw new ParseException(string.Format("Invalid character '{0}'.", c));
