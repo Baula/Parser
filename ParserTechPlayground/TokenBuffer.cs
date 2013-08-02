@@ -6,6 +6,7 @@ namespace ParserTechPlayground
     {
         private readonly List<IToken> _tokens;
         private int _pos;
+        private int _savedPos;
 
         public TokenBuffer()
         {
@@ -36,6 +37,16 @@ namespace ParserTechPlayground
             if (Current is T)
                 return (T)GetAndConsumeCurrent();
             return default(T);
+        }
+
+        internal void SavePosition()
+        {
+            _savedPos = _pos;
+        }
+
+        internal void RestorePosition()
+        {
+            _pos = _savedPos;
         }
     }
 }

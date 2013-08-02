@@ -7,7 +7,7 @@ namespace ParserTechPlayground
     {
         private string _name;
 
-        public Identifier(List<Character> characters)
+        private Identifier(List<Character> characters)
         {
             _name = characters.Aggregate("", (s, c) => s += c.Value);
         }

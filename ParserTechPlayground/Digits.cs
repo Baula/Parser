@@ -7,7 +7,7 @@ namespace ParserTechPlayground
     {
         private long _asWholeNumber;
 
-        public Digits(List<Digit> digitList)
+        private Digits(List<Digit> digitList)
         {
             _asWholeNumber = digitList.Aggregate(0L, (s, d) => s = 10 * s + d.Value);
         }

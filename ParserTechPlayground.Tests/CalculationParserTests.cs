@@ -40,7 +40,9 @@ namespace ParserTechPlayground.Tests
 
             Assert.IsNotNull(result, "The result should not be null.");
             Assert.AreEqual("left", result.Assignee.Name);
-            Assert.AreEqual(123, result.Assigner.Value.Number.Value);
+            Assert.AreEqual("one", result.Assigner.AddSub.Left.Identifier.Name);
+            Assert.IsTrue(result.Assigner.AddSub.Operator.IsPlusNotMinus);
+            Assert.AreEqual("two", result.Assigner.AddSub.Right.Identifier.Name);
         }
     }
 }

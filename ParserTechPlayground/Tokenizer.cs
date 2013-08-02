@@ -22,6 +22,10 @@
                 return new Digit(c);
             if (c == '=')
                 return new AssignmentOperator();
+            if (c == '+')
+                return new AdditionOperator();
+            if (c == '-')
+                return new SubtractionOperator();
             throw new ParseException(string.Format("Invalid character '{0}'.", c));
         }
     }

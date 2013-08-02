@@ -1,21 +1,30 @@
-﻿using System;
-
-namespace ParserTechPlayground
+﻿namespace ParserTechPlayground
 {
     public class Expression : IToken
     {
         private readonly Value _value;
+        private readonly AddSub _addSub;
 
-        public Expression(Value value)
+        private Expression(Value value)
         {
             _value = value;
         }
 
-        public Value Value { get { return _value; } }
+        private Expression(AddSub addSub)
+        {
+            _addSub = addSub;
+        }
 
-        // Expression   : Value
+        public Value Value { get { return _value; } }
+        public AddSub AddSub { get { return _addSub; } }
+
+        // Expression   : AddSub | Value
         internal static Expression Produce(TokenBuffer tokens)
         {
+            var addSub = AddSub.Produce(tokens);
+            if (addSub != null)
+                return new Expression(addSub);
+
             var value = Value.Produce(tokens);
             if (value != null)
                 return new Expression(value);

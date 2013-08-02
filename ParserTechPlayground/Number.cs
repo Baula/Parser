@@ -5,7 +5,7 @@
     {
         private long _value;
 
-        public Number(Digits digits)
+        private Number(Digits digits)
         {
             _value = digits.AsWholeNumber;
         }

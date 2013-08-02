@@ -6,7 +6,7 @@
         private Identifier _assignee;
         private Expression _assigner;
 
-        public Assignment(Identifier assignee, Expression assigner)
+        private Assignment(Identifier assignee, Expression assigner)
         {
             _assignee = assignee;
             _assigner = assigner;

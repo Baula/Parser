@@ -7,13 +7,17 @@ namespace ParserTechPlayground
      * 
      * - Non-Terminals
      * Assignment   : Identifier AssignOp Expression EOF
-     * Expression   : Value
+     * Expression   : AddSub | Value
+     * AddSub       : Value PluMin Value
+     * PluMin       : AddOp | SubOp
      * Value        : Identifier | Number
      * Number       : Digits
      * Digits       : Digit+
      * Identifier   : Character+
      * 
      * - Terminals
+     * AddOp        : '+'
+     * SubOp        : '-'
      * Digit        : '0'..'9'
      * Character    : 'a'..'b'
      * AssignOp     : '='

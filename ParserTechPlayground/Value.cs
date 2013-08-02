@@ -5,12 +5,12 @@
         private readonly Identifier _identifier;
         private readonly Number _number;
 
-        public Value(Identifier identifier)
+        private Value(Identifier identifier)
         {
             _identifier = identifier;
         }
 
-        public Value(Number number)
+        private Value(Number number)
         {
             _number = number;
         }
