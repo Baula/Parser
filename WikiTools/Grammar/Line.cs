@@ -10,7 +10,7 @@ namespace WikiTools.Grammar
         private Line ()
 	    { }
 
-        internal static Line Produce(IEnumerator<IToken> tokenEnum)
+        public static Line Produce(IEnumerator<IToken> tokenEnum)
         {
             if (tokenEnum.Current is EOF)
                 return null;
