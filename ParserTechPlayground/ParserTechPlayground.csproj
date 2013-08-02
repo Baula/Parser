@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Assignment.cs" />
     <Compile Include="AssignmentOperator.cs" />
-    <Compile Include="AssignmentParser.cs" />
+    <Compile Include="CalculationParser.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="EOF.cs" />
     <Compile Include="Identifier.cs" />

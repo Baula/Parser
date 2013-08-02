@@ -24,30 +24,35 @@ namespace ParserTechPlayground
             if (assignment == null)
                 throw new ParseException("Expected assignment.");
 
-            return assignment;
-        }
-
-        private Assignment GetAssignment(TokenBuffer tokens)
-        {
-            var assignee = GetIdentifier(tokens);
-            if (assignee == null)
-                throw new ParseException("Assignment must start with a identifier for the assignee.");
-
-            var assignOp = GetAssignOp(tokens);
-            if (assignOp == null)
-                throw new ParseException("Expected assignment operator.");
-
-            var assigner = GetIdentifier(tokens);
-            if (assigner == null)
-                throw new ParseException("Expected identifier for the assigner after assignment operator.");
-
             var eof = GetEOF(tokens);
             if (eof == null)
                 throw new ParseException("Expected end of file");
 
+            return assignment;
+        }
+
+        // Assignment   : Identifier AssignOp Identifier EOF
+        private Assignment GetAssignment(TokenBuffer tokens)
+        {
+            var assignee = GetIdentifier(tokens);
+            if (assignee == null)
+                //throw new ParseException("Assignment must start with a identifier for the assignee.");
+                return null;
+
+            var assignOp = GetAssignOp(tokens);
+            if (assignOp == null)
+                //throw new ParseException("Expected assignment operator.");
+                return null;
+
+            var assigner = GetIdentifier(tokens);
+            if (assigner == null)
+                //throw new ParseException("Expected identifier for the assigner after assignment operator.");
+                return null;
+
             return new Assignment(assignee, assigner);
         }
 
+        // Identifier   : Character+
         private Identifier GetIdentifier(TokenBuffer tokens)
         {
             var characters = new List<Character>();
