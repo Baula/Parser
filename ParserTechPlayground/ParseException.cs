@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AssignmentParserPlayground
+namespace ParserTechPlayground
 {
     class ParseException : Exception
     {

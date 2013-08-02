@@ -1,16 +1,16 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AssignmentParserPlayground
+namespace ParserTechPlayground.Tests
 {
     [TestClass]
-    public class AssignmentParserTests
+    public class CalculationParserTests
     {
-        private AssignmentParser _parser;
+        private CalculationParser _parser;
 
         [TestInitialize]
         public void SetupParser()
         {
-            _parser = new AssignmentParser();
+            _parser = new CalculationParser();
         }
 
         [TestMethod]

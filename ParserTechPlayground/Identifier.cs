@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace AssignmentParserPlayground
+namespace ParserTechPlayground
 {
-    class Identifier
+    public class Identifier
     {
         private List<Character> _characters;
         private string _name;

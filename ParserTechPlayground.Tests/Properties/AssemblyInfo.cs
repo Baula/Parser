@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AssignmentParserPlayground")]
+[assembly: AssemblyTitle("ParserTechPlayground.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AssignmentParserPlayground")]
+[assembly: AssemblyProduct("ParserTechPlayground.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("eec605c9-c2c0-453e-9e48-b1a9d4371cfe")]
+[assembly: Guid("1792e38e-68fc-42c6-a67c-877c4dcd2860")]
 
 // Version information for an assembly consists of the following four values:
 //

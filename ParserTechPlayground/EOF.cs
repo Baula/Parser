@@ -1,5 +1,5 @@
 ﻿
-namespace AssignmentParserPlayground
+namespace ParserTechPlayground
 {
     class EOF : IToken
     {

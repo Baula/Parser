@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{71C9A759-14EA-4CFB-80C0-3336C198201F}</ProjectGuid>
+    <ProjectGuid>{3BE9E0DF-BD0A-45A4-9806-C4B4B39D4AB6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AssignmentParserPlayground</RootNamespace>
-    <AssemblyName>AssignmentParserPlayground</AssemblyName>
+    <RootNamespace>ParserTechPlayground.Tests</RootNamespace>
+    <AssemblyName>ParserTechPlayground.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -50,17 +50,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Assignment.cs" />
-    <Compile Include="AssignmentOperator.cs" />
-    <Compile Include="AssignmentParser.cs" />
-    <Compile Include="AssignmentParserTests.cs" />
-    <Compile Include="Character.cs" />
-    <Compile Include="EOF.cs" />
-    <Compile Include="Identifier.cs" />
-    <Compile Include="IToken.cs" />
-    <Compile Include="ParseException.cs" />
-    <Compile Include="TokenBuffer.cs" />
+    <Compile Include="CalculationParserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ParserTechPlayground\ParserTechPlayground.csproj">
+      <Project>{8ab7e996-75ed-48b5-acf7-1c36a0de3862}</Project>
+      <Name>ParserTechPlayground</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

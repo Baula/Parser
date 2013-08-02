@@ -1,7 +1,6 @@
-﻿
-namespace AssignmentParserPlayground
+﻿namespace ParserTechPlayground
 {
-    class Assignment
+    public class Assignment
     {
         private Identifier _assignee;
         private Identifier _assigner;

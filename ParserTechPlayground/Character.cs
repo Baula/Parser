@@ -1,6 +1,6 @@
-﻿namespace AssignmentParserPlayground
+﻿namespace ParserTechPlayground
 {
-    class Character : IToken
+    public class Character : IToken
     {
         private readonly char _c;
 

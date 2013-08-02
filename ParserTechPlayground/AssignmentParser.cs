@@ -1,7 +1,6 @@
-﻿using AssignmentParserPlayground;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace AssignmentParserPlayground
+namespace ParserTechPlayground
 {
     /*
          Grammar:
@@ -15,9 +14,9 @@ namespace AssignmentParserPlayground
      * AssignOp     : '='
      * EOF
     */
-    class AssignmentParser
+    public class CalculationParser
     {
-        internal Assignment Parse(string input)
+        public Assignment Parse(string input)
         {
             var tokens = Tokenize(input);
 
