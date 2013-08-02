@@ -1,7 +1,7 @@
 ﻿
 namespace ParserTechPlayground
 {
-    class AssignmentOperator : IToken
+    class AssignmentOperator : ITerminal
     {
     }
 }

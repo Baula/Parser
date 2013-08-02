@@ -29,5 +29,13 @@ namespace ParserTechPlayground
             _pos++;
             return t;
         }
+
+        public T GetTerminal<T>()
+            where T : ITerminal
+        {
+            if (Current is T)
+                return (T)GetAndConsumeCurrent();
+            return default(T);
+        }
     }
 }

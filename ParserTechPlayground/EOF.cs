@@ -1,7 +1,6 @@
-﻿
-namespace ParserTechPlayground
+﻿namespace ParserTechPlayground
 {
-    class EOF : IToken
+    class EOF : ITerminal
     {
     }
 }

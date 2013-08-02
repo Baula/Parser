@@ -1,6 +1,6 @@
 ﻿namespace ParserTechPlayground
 {
-    public class Character : IToken
+    public class Character : ITerminal
     {
         private readonly char _c;
 

@@ -24,7 +24,7 @@ namespace ParserTechPlayground
             if (assignment == null)
                 throw new ParseException("Expected assignment.");
 
-            var eof = GetEOF(tokens);
+            var eof = tokens.GetTerminal<EOF>();
             if (eof == null)
                 throw new ParseException("Expected end of file");
 
@@ -39,7 +39,7 @@ namespace ParserTechPlayground
                 //throw new ParseException("Assignment must start with a identifier for the assignee.");
                 return null;
 
-            var assignOp = GetAssignOp(tokens);
+            var assignOp = tokens.GetTerminal<AssignmentOperator>();
             if (assignOp == null)
                 //throw new ParseException("Expected assignment operator.");
                 return null;
@@ -56,40 +56,17 @@ namespace ParserTechPlayground
         private Identifier GetIdentifier(TokenBuffer tokens)
         {
             var characters = new List<Character>();
-            var character = GetCharacter(tokens);
+            var character = tokens.GetTerminal<Character>();
             if (character == null)
                 return null;
 
             while (character != null)
             {
                 characters.Add(character);
-                character = GetCharacter(tokens);
+                character = tokens.GetTerminal<Character>();
             }
 
             return new Identifier(characters);
-        }
-
-        private EOF GetEOF(TokenBuffer tokens)
-        {
-            return Get<EOF>(tokens);
-        }
-
-        private AssignmentOperator GetAssignOp(TokenBuffer tokens)
-        {
-            return Get<AssignmentOperator>(tokens);
-        }
-
-        private Character GetCharacter(TokenBuffer tokens)
-        {
-            return Get<Character>(tokens);
-        }
-
-        private static T Get<T>(TokenBuffer tokens)
-            where T : IToken
-        {
-            if (tokens.Current is T)
-                return (T)tokens.GetAndConsumeCurrent();
-            return default(T);
         }
     }
 }
