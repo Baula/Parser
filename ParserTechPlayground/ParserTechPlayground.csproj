@@ -39,26 +39,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdditionOperator.cs" />
-    <Compile Include="AddSub.cs" />
-    <Compile Include="Assignment.cs" />
-    <Compile Include="AssignmentOperator.cs" />
+    <Compile Include="Tokens\AdditionOperator.cs" />
+    <Compile Include="NonTerminals\AddSub.cs" />
+    <Compile Include="NonTerminals\Assignment.cs" />
+    <Compile Include="Tokens\AssignmentOperator.cs" />
     <Compile Include="CalculationParser.cs" />
-    <Compile Include="Character.cs" />
-    <Compile Include="Digit.cs" />
-    <Compile Include="Digits.cs" />
-    <Compile Include="EOF.cs" />
-    <Compile Include="Expression.cs" />
-    <Compile Include="Identifier.cs" />
+    <Compile Include="Tokens\Character.cs" />
+    <Compile Include="Tokens\Digit.cs" />
+    <Compile Include="NonTerminals\Digits.cs" />
+    <Compile Include="Tokens\EOF.cs" />
+    <Compile Include="NonTerminals\Expression.cs" />
+    <Compile Include="NonTerminals\Identifier.cs" />
     <Compile Include="IToken.cs" />
-    <Compile Include="Number.cs" />
+    <Compile Include="NonTerminals\Number.cs" />
     <Compile Include="ParseException.cs" />
-    <Compile Include="PluMin.cs" />
+    <Compile Include="NonTerminals\PluMin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubtractionOperator.cs" />
+    <Compile Include="Tokens\SubtractionOperator.cs" />
     <Compile Include="TokenBuffer.cs" />
     <Compile Include="Tokenizer.cs" />
-    <Compile Include="Value.cs" />
+    <Compile Include="NonTerminals\Value.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
