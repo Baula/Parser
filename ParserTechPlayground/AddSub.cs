@@ -2,13 +2,12 @@
 {
     public class AddSub : IToken
     {
-        private Value  _left;
+        private Value _left;
         private PluMin _pluMinOp;
-        private Value  _right;
+        private Expression  _right;
 
-        private AddSub(Value left, PluMin pluMinOp, Value right)
+        private AddSub(Value left, PluMin pluMinOp, Expression right)
         {
-            // TODO: Complete member initialization
             _left = left;
             _pluMinOp = pluMinOp;
             _right = right;
@@ -16,9 +15,9 @@
 
         public Value Left { get { return _left; } }
         public PluMin Operator { get { return _pluMinOp; } }
-        public Value Right { get { return _right; } }
+        public Expression Right { get { return _right; } }
 
-        // AddSub       : Value PluMin Value
+        // AddSub       : Value PluMin Expression
         internal static AddSub Produce(TokenBuffer tokens)
         {
             tokens.SavePosition();
@@ -28,7 +27,7 @@
                 var pluMin = PluMin.Produce(tokens);
                 if (pluMin != null)
                 {
-                    var rhs = Value.Produce(tokens);
+                    var rhs = Expression.Produce(tokens);
                     if (rhs != null)
                         return new AddSub(lhs, pluMin, rhs);
                 }

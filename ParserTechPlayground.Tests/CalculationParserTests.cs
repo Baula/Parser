@@ -42,7 +42,7 @@ namespace ParserTechPlayground.Tests
             Assert.AreEqual("left", result.Assignee.Name);
             Assert.AreEqual("one", result.Assigner.AddSub.Left.Identifier.Name);
             Assert.IsTrue(result.Assigner.AddSub.Operator.IsPlusNotMinus);
-            Assert.AreEqual("two", result.Assigner.AddSub.Right.Identifier.Name);
+            Assert.AreEqual("two", result.Assigner.AddSub.Right.Value.Identifier.Name);
         }
 
         [TestMethod]
@@ -54,7 +54,21 @@ namespace ParserTechPlayground.Tests
             Assert.AreEqual("left", result.Assignee.Name);
             Assert.AreEqual(123, result.Assigner.AddSub.Left.Number.Value);
             Assert.IsTrue(result.Assigner.AddSub.Operator.IsPlusNotMinus);
-            Assert.AreEqual(456, result.Assigner.AddSub.Right.Number.Value);
+            Assert.AreEqual(456, result.Assigner.AddSub.Right.Value.Number.Value);
+        }
+
+        [TestMethod]
+        public void ExpressionIsAdditionOfMoreThanTwoIdentifiers()
+        {
+            var result = _parser.Parse("left=one+two-three");
+
+            Assert.IsNotNull(result, "The result should not be null.");
+            Assert.AreEqual("left", result.Assignee.Name);
+            Assert.AreEqual("one", result.Assigner.AddSub.Left.Identifier.Name);
+            Assert.IsTrue(result.Assigner.AddSub.Operator.IsPlusNotMinus);
+            Assert.AreEqual("two", result.Assigner.AddSub.Right.AddSub.Left.Identifier.Name);
+            Assert.IsFalse(result.Assigner.AddSub.Right.AddSub.Operator.IsPlusNotMinus);
+            Assert.AreEqual("three", result.Assigner.AddSub.Right.AddSub.Right.Value.Identifier.Name);
         }
     }
 }
