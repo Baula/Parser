@@ -35,7 +35,7 @@ namespace ParserTechPlayground
         }
 
         public T GetTerminal<T>()
-            where T : ITerminal
+            where T : IToken
         {
             if (Current is T)
                 return (T)GetAndConsumeCurrent();

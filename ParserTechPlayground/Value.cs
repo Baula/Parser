@@ -1,6 +1,6 @@
 ﻿namespace ParserTechPlayground
 {
-    public class Value : IToken
+    public class Value
     {
         private readonly Identifier _identifier;
         private readonly Number _number;

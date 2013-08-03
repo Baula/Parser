@@ -1,7 +1,7 @@
 ﻿namespace ParserTechPlayground
 {
     // Number       : Digits
-    public class Number : IToken
+    public class Number
     {
         private long _value;
 

@@ -1,6 +1,6 @@
 ﻿namespace ParserTechPlayground
 {
-    public class Expression : IToken
+    public class Expression
     {
         private readonly Value _value;
         private readonly AddSub _addSub;

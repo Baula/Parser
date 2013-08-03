@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ParserTechPlayground
 {
-    public class Digits : IToken
+    public class Digits
     {
         private long _asWholeNumber;
 

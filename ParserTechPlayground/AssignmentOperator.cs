@@ -1,6 +1,6 @@
 ﻿namespace ParserTechPlayground
 {
-    class AssignmentOperator : ITerminal
+    class AssignmentOperator : IToken
     {
         public override string ToString() { return "="; }
     }

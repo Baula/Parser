@@ -1,6 +1,6 @@
 ﻿namespace ParserTechPlayground
 {
-    public class PluMin : IToken
+    public class PluMin
     {
         private readonly bool _isPlusNotMinus;
 

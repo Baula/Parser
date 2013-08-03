@@ -2,7 +2,7 @@
 
 namespace ParserTechPlayground
 {
-    public class Digit : ITerminal
+    public class Digit : IToken
     {
         private int _value;
 

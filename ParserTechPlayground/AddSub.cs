@@ -1,6 +1,6 @@
 ﻿namespace ParserTechPlayground
 {
-    public class AddSub : IToken
+    public class AddSub
     {
         private Value _left;
         private PluMin _pluMinOp;

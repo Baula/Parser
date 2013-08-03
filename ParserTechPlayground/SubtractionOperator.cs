@@ -1,6 +1,6 @@
 ﻿namespace ParserTechPlayground
 {
-    class SubtractionOperator : ITerminal
+    class SubtractionOperator : IToken
     {
         public override string ToString() { return "-"; }
     }

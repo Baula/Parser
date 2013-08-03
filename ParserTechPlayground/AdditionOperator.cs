@@ -1,6 +1,6 @@
 ﻿namespace ParserTechPlayground
 {
-    class AdditionOperator : ITerminal
+    class AdditionOperator : IToken
     {
         public override string ToString() { return "+"; }
     }

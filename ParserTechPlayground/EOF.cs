@@ -1,6 +1,6 @@
 ﻿namespace ParserTechPlayground
 {
-    class EOF : ITerminal
+    class EOF : IToken
     {
         public override string ToString() { return "<EOF>"; }
     }
