@@ -12,5 +12,7 @@ namespace ParserTechPlayground
         }
 
         public int Value { get { return _value; } }
+
+        public override string ToString() { return Value.ToString(); }
     }
 }

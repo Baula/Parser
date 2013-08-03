@@ -10,5 +10,7 @@
         }
 
         public string Value { get { return _c.ToString(); } }
+
+        public override string ToString() { return Value; }
     }
 }

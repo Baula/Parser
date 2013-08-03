@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 
 namespace ParserTechPlayground
 {
+    [DebuggerDisplay("{DebuggerString}")]
     class TokenBuffer
     {
         private readonly List<IToken> _tokens;
@@ -47,6 +50,16 @@ namespace ParserTechPlayground
         internal void RestorePosition()
         {
             _pos = _savedPos;
+        }
+
+        internal string DebuggerString
+        {
+            get
+            {
+                return _tokens.Take(_pos).Aggregate("", (s, t) => s += t.ToString()) +
+                       "|" + Current.ToString() + "|" +
+                       _tokens.Skip(_pos + 1).Aggregate("", (s, t) => s += t.ToString());
+            }
         }
     }
 }
