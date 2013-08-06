@@ -3,7 +3,7 @@
 namespace ParserTechPlayground
 {
     [DebuggerDisplay("{DebuggerDisplayText}")]
-    public class Value
+    public class Value : IAddSubLeftNode
     {
         private readonly Identifier _identifier;
         private readonly Number _number;

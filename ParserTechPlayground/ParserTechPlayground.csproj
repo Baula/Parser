@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NodeExtensions.cs" />
+    <Compile Include="NonTerminals\IAddSubLeftNode.cs" />
     <Compile Include="Tokens\AdditionOperator.cs" />
     <Compile Include="NonTerminals\AddSub.cs" />
     <Compile Include="NonTerminals\Assignment.cs" />
