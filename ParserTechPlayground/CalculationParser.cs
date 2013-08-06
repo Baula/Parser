@@ -7,8 +7,8 @@ namespace ParserTechPlayground
      * 
      * - Non-Terminals
      * Assignment   : Identifier AssignOp Expression EOF
-     * Expression   : AddSub | Value
-     * AddSub       : Value PluMin Expression
+     * Expression   : AddSub
+     * AddSub       : Value (PluMin Value)*
      * PluMin       : AddOp | SubOp
      * Value        : Identifier | Number
      * Number       : Digits
