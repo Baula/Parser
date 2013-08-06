@@ -34,11 +34,11 @@
         // AddSub       : Value (PluMin Value)*
         internal static AddSub Produce(TokenBuffer tokens)
         {
-            tokens.SavePosition();   // TODO: think about this
             var lhs = Value.Produce(tokens);
             if (lhs != null)
             {
                 AddSub leftAddSub = null;
+                tokens.SavePosition();
                 var pluMin = PluMin.Produce(tokens);
                 while (pluMin != null)
                 {
@@ -49,15 +49,19 @@
                             leftAddSub = new AddSub(lhs, pluMin, rhs);
                         else
                             leftAddSub = new AddSub(leftAddSub, pluMin, rhs);
+                        pluMin = PluMin.Produce(tokens);
                     }
-                    pluMin = PluMin.Produce(tokens);
+                    else
+                    {
+                        tokens.RestorePosition();
+                        break;
+                    }
                 }
                 if (leftAddSub == null)
                     return new AddSub(lhs);
                 return leftAddSub;
             }
 
-            tokens.RestorePosition();
             return null;
         }
     }

@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace ParserTechPlayground.Tests
 {
@@ -73,6 +75,16 @@ namespace ParserTechPlayground.Tests
             Assert.AreEqual("two", subNode.Right.Identifier.Name);
             Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
             Assert.AreEqual("three", addNode.Right.Identifier.Name);
+        }
+
+        [TestMethod]
+        public void ExpressionIsHalfAddition()
+        {
+            new Action(
+                () => _parser.Parse("left=one+")
+                )
+                .ShouldThrow<ParseException>()
+                .WithMessage("Expected end of file", ComparisonMode.Substring);
         }
     }
 }
