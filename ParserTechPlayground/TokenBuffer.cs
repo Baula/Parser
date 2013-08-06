@@ -7,9 +7,10 @@ namespace ParserTechPlayground
     [DebuggerDisplay("{DebuggerString}")]
     class TokenBuffer
     {
+        private const int PositionNotSaved = -1;
         private readonly List<IToken> _tokens;
         private int _pos;
-        private int _savedPos;
+        private int _savedPos = PositionNotSaved;
 
         public TokenBuffer()
         {
@@ -56,9 +57,15 @@ namespace ParserTechPlayground
         {
             get
             {
-                return _tokens.Take(_pos).Aggregate("", (s, t) => s += t.ToString()) +
-                       "|" + Current.ToString() + "|" +
-                       _tokens.Skip(_pos + 1).Aggregate("", (s, t) => s += t.ToString());
+                var content = _tokens.Take(_pos).Aggregate("", (s, t) => s += t.ToString()) +
+                              "|" + Current.ToString() + "|" +
+                              _tokens.Skip(_pos + 1).Aggregate("", (s, t) => s += t.ToString());
+
+                if (_savedPos == PositionNotSaved)
+                    return content;
+
+                var savedPosInfo = string.Format("{0} ({1})", _savedPos, _tokens[_savedPos]);
+                return string.Format("{0} savedPos: {1}", content, savedPosInfo);
             }
         }
     }

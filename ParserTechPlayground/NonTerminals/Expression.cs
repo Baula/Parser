@@ -1,5 +1,8 @@
-﻿namespace ParserTechPlayground
+﻿using System.Diagnostics;
+
+namespace ParserTechPlayground
 {
+    [DebuggerDisplay("{DebuggerDisplayString}")]
     public class Expression
     {
         private readonly Value _value;
@@ -30,6 +33,20 @@
                 return new Expression(value);
 
             return null;
+        }
+
+        public override string ToString()
+        {
+            return (_value != null) ? _value.ToString() : "[" + _addSub.ToString() + "]";
+        }
+
+        internal string DebuggerDisplayString
+        {
+            get
+            {
+                var kindInfo = (_value != null) ? "Value" : "AddSub";
+                return string.Format("{0} ({1})", ToString(), kindInfo);
+            }
         }
     }
 }

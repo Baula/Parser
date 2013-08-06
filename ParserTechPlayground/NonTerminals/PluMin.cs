@@ -29,5 +29,10 @@
 
             return null;
         }
+
+        public override string ToString()
+        {
+            return _isPlusNotMinus ? "+" : "-";
+        }
     }
 }

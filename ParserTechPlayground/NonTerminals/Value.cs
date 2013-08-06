@@ -1,5 +1,8 @@
-﻿namespace ParserTechPlayground
+﻿using System.Diagnostics;
+
+namespace ParserTechPlayground
 {
+    [DebuggerDisplay("{DebuggerDisplayText}")]
     public class Value
     {
         private readonly Identifier _identifier;
@@ -30,6 +33,22 @@
                 return new Value(number);
 
             return null;
+        }
+
+        public override string ToString()
+        {
+            if (_number != null)
+                return _number.Value.ToString();
+            return _identifier.Name;
+        }
+
+        internal string DebuggerDisplayText
+        {
+            get
+            {
+                var kindInfo = (_number != null) ? "Number" : "Identifier";
+                return string.Format("{0} ({1})", ToString(), kindInfo);
+            }
         }
     }
 }
