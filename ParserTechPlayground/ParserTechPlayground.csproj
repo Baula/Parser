@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NodeExtensions.cs" />
-    <Compile Include="NonTerminals\IAddSubLeftNode.cs" />
+    <Compile Include="NonTerminals\INode.cs" />
     <Compile Include="Tokens\AdditionOperator.cs" />
     <Compile Include="NonTerminals\AddSub.cs" />
     <Compile Include="NonTerminals\Assignment.cs" />

@@ -22,7 +22,7 @@ namespace ParserTechPlayground.Tests
 
             Assert.IsNotNull(result, "The result should not be null.");
             Assert.AreEqual("left", result.Assignee.Name);
-            Assert.AreEqual("right", result.Assigner.AddSub.Left.As<Value>().Identifier.Name);
+            Assert.AreEqual("right", result.Assigner.As<Value>().Identifier.Name);
         }
 
         [TestMethod]
@@ -32,7 +32,7 @@ namespace ParserTechPlayground.Tests
 
             Assert.IsNotNull(result, "The result should not be null.");
             Assert.AreEqual("left", result.Assignee.Name);
-            Assert.AreEqual(123, result.Assigner.AddSub.Left.As<Value>().Number.Value);
+            Assert.AreEqual(123, result.Assigner.As<Value>().Number.Value);
         }
 
         [TestMethod]
@@ -42,7 +42,7 @@ namespace ParserTechPlayground.Tests
 
             Assert.IsNotNull(result, "The result should not be null.");
             Assert.AreEqual("left", result.Assignee.Name);
-            var addNode = result.Assigner.AddSub;
+            var addNode = result.Assigner.As<AddSub>();
             Assert.AreEqual("one", addNode.Left.As<Value>().Identifier.Name);
             Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
             Assert.AreEqual("two", addNode.Right.Identifier.Name);
@@ -55,7 +55,7 @@ namespace ParserTechPlayground.Tests
 
             Assert.IsNotNull(result, "The result should not be null.");
             Assert.AreEqual("left", result.Assignee.Name);
-            var addNode = result.Assigner.AddSub;
+            var addNode = result.Assigner.As<AddSub>();
             Assert.AreEqual(123, addNode.Left.As<Value>().Number.Value);
             Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
             Assert.AreEqual(456, addNode.Right.Number.Value);
@@ -68,7 +68,7 @@ namespace ParserTechPlayground.Tests
 
             Assert.IsNotNull(result, "The result should not be null.");
             Assert.AreEqual("left", result.Assignee.Name);
-            var addNode = result.Assigner.AddSub;
+            var addNode = result.Assigner.As<AddSub>();
             var subNode = addNode.Left.As<AddSub>();
             Assert.AreEqual("one", subNode.Left.As<Value>().Identifier.Name);
             Assert.IsFalse(subNode.Operator.IsPlusNotMinus);

@@ -1,8 +1,8 @@
 ﻿namespace ParserTechPlayground
 {
-    public class AddSub : IAddSubLeftNode
+    public class AddSub : INode
     {
-        private IAddSubLeftNode _left;
+        private INode _left;
         private PluMin _pluMinOp;
         private Value _right;
 
@@ -11,26 +11,26 @@
             _left = left;
         }
 
-        private AddSub(IAddSubLeftNode left, PluMin pluMinOp, Value right)
+        private AddSub(INode left, PluMin pluMinOp, Value right)
         {
             _left = left;
             _pluMinOp = pluMinOp;
             _right = right;
         }
 
-        public IAddSubLeftNode Left { get { return _left; } }
+        public INode Left { get { return _left; } }
         public PluMin Operator { get { return _pluMinOp; } }
         public Value Right { get { return _right; } }
 
         // AddSub       : Value (PluMin Value)*
-        internal static AddSub Produce(TokenBuffer tokens)
+        internal static INode Produce(TokenBuffer tokens)
         {
             var value = Value.Produce(tokens);
             if (value == null)
                 return null;
 
             tokens.SavePosition();
-            IAddSubLeftNode lhs = value;
+            INode lhs = value;
             var pluMin = PluMin.Produce(tokens);
             while (pluMin != null)
             {
@@ -44,9 +44,9 @@
                 pluMin = PluMin.Produce(tokens);
             }
 
-            if (lhs is AddSub)
-                return lhs.As<AddSub>();
-            return new AddSub(lhs.As<Value>());
+            if (lhs is Value)
+                return lhs;
+            return lhs.As<AddSub>();
         }
     }
 }

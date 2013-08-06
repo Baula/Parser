@@ -1,7 +1,7 @@
 ﻿
 namespace ParserTechPlayground
 {
-    public interface IAddSubLeftNode
+    public interface INode
     {
     }
 }

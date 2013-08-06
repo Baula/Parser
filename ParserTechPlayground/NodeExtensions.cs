@@ -4,8 +4,8 @@ namespace ParserTechPlayground
 {
     public static class NodeExtensions
     {
-        public static T As<T>(this IAddSubLeftNode node)
-            where T : IAddSubLeftNode
+        public static T As<T>(this INode node)
+            where T : INode
         {
             if (node is T)
                 return (T)node;

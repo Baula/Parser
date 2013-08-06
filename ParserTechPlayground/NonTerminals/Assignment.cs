@@ -4,9 +4,9 @@
     public class Assignment
     {
         private Identifier _assignee;
-        private Expression _assigner;
+        private INode _assigner;
 
-        private Assignment(Identifier assignee, Expression assigner)
+        private Assignment(Identifier assignee, INode assigner)
         {
             _assignee = assignee;
             _assigner = assigner;
@@ -17,7 +17,7 @@
             get { return _assignee; }
         }
 
-        public Expression Assigner
+        public INode Assigner
         {
             get { return _assigner; }
         }
