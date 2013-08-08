@@ -26,6 +26,10 @@
                 return new AdditionOperator();
             if (c == '-')
                 return new SubtractionOperator();
+            if (c == '*')
+                return new MultiplicationOperator();
+            if (c == '/')
+                return new DivisionOperator();
             throw new ParseException(string.Format("Invalid character '{0}'.", c));
         }
     }

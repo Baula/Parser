@@ -41,6 +41,8 @@
   <ItemGroup>
     <Compile Include="NodeExtensions.cs" />
     <Compile Include="NonTerminals\INode.cs" />
+    <Compile Include="NonTerminals\MulDiv.cs" />
+    <Compile Include="NonTerminals\TimDiv.cs" />
     <Compile Include="Tokens\AdditionOperator.cs" />
     <Compile Include="NonTerminals\AddSub.cs" />
     <Compile Include="NonTerminals\Assignment.cs" />
@@ -49,6 +51,7 @@
     <Compile Include="Tokens\Character.cs" />
     <Compile Include="Tokens\Digit.cs" />
     <Compile Include="NonTerminals\Digits.cs" />
+    <Compile Include="Tokens\DivisionOperator.cs" />
     <Compile Include="Tokens\EOF.cs" />
     <Compile Include="NonTerminals\Expression.cs" />
     <Compile Include="NonTerminals\Identifier.cs" />
@@ -57,6 +60,7 @@
     <Compile Include="ParseException.cs" />
     <Compile Include="NonTerminals\PluMin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tokens\MultiplicationOperator.cs" />
     <Compile Include="Tokens\SubtractionOperator.cs" />
     <Compile Include="TokenBuffer.cs" />
     <Compile Include="Tokenizer.cs" />

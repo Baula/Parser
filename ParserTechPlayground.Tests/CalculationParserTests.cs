@@ -45,7 +45,7 @@ namespace ParserTechPlayground.Tests
             var addNode = result.Assigner.As<AddSub>();
             Assert.AreEqual("one", addNode.Left.As<Value>().Identifier.Name);
             Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
-            Assert.AreEqual("two", addNode.Right.Identifier.Name);
+            Assert.AreEqual("two", addNode.Right.As<Value>().Identifier.Name);
         }
 
         [TestMethod]
@@ -58,7 +58,7 @@ namespace ParserTechPlayground.Tests
             var addNode = result.Assigner.As<AddSub>();
             Assert.AreEqual(123, addNode.Left.As<Value>().Number.Value);
             Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
-            Assert.AreEqual(456, addNode.Right.Number.Value);
+            Assert.AreEqual(456, addNode.Right.As<Value>().Number.Value);
         }
 
         [TestMethod]
@@ -72,19 +72,71 @@ namespace ParserTechPlayground.Tests
             var subNode = addNode.Left.As<AddSub>();
             Assert.AreEqual("one", subNode.Left.As<Value>().Identifier.Name);
             Assert.IsFalse(subNode.Operator.IsPlusNotMinus);
-            Assert.AreEqual("two", subNode.Right.Identifier.Name);
+            Assert.AreEqual("two", subNode.Right.As<Value>().Identifier.Name);
             Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
-            Assert.AreEqual("three", addNode.Right.Identifier.Name);
+            Assert.AreEqual("three", addNode.Right.As<Value>().Identifier.Name);
         }
 
         [TestMethod]
-        public void ExpressionIsHalfAddition()
+        public void ExpressionIsHalfAddition_ThrowsProperException()
         {
             new Action(
                 () => _parser.Parse("left=one+")
                 )
                 .ShouldThrow<ParseException>()
                 .WithMessage("Expected end of file", ComparisonMode.Substring);
+        }
+
+        [TestMethod]
+        public void ExpressionIsMultiplication()
+        {
+            var result = _parser.Parse("left=this*that");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("left", result.Assignee.Name);
+            var mulNode = result.Assigner.As<MulDiv>();
+            Assert.AreEqual("this", mulNode.Left.As<Value>().Identifier.Name);
+            Assert.AreEqual("that", mulNode.Right.Identifier.Name);
+        }
+
+        [TestMethod]
+        public void ExpressionIsHalfMultiplication_ThrowsProperException()
+        {
+            new Action(
+                () => _parser.Parse("left=one*")
+                )
+                .ShouldThrow<ParseException>()
+                .WithMessage("Expected end of file", ComparisonMode.Substring);
+        }
+
+        [TestMethod]
+        public void ExpressionIsMixedAddSubMulDiv()
+        {
+            var result = _parser.Parse("left=one+two/three-four+five*six");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("left", result.Assignee.Name);
+
+            var addNode2 = result.Assigner.As<AddSub>();
+            Assert.IsTrue(addNode2.Operator.IsPlusNotMinus);
+
+            var subNode = addNode2.Left.As<AddSub>();
+            Assert.IsFalse(subNode.Operator.IsPlusNotMinus);
+            Assert.AreEqual("four", subNode.Right.As<Value>().Identifier.Name);
+
+            var mulNode = addNode2.Right.As<MulDiv>();
+            Assert.IsTrue(mulNode.Operator.IsTimes);
+            Assert.AreEqual("five", mulNode.Left.As<Value>().Identifier.Name);
+            Assert.AreEqual("six", mulNode.Right.As<Value>().Identifier.Name);
+
+            var addNode = subNode.Left.As<AddSub>();
+            Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
+            Assert.AreEqual("one", addNode.Left.As<Value>().Identifier.Name);
+
+            var divNode = addNode.Right.As<MulDiv>();
+            Assert.IsTrue(divNode.Operator.IsDividedBy);
+            Assert.AreEqual("two", divNode.Left.As<Value>().Identifier.Name);
+            Assert.AreEqual("three", divNode.Right.As<Value>().Identifier.Name);
         }
     }
 }

@@ -4,14 +4,14 @@
     {
         private INode _left;
         private PluMin _pluMinOp;
-        private Value _right;
+        private INode _right;
 
         public AddSub(Value left)
         {
             _left = left;
         }
 
-        private AddSub(INode left, PluMin pluMinOp, Value right)
+        private AddSub(INode left, PluMin pluMinOp, INode right)
         {
             _left = left;
             _pluMinOp = pluMinOp;
@@ -20,21 +20,21 @@
 
         public INode Left { get { return _left; } }
         public PluMin Operator { get { return _pluMinOp; } }
-        public Value Right { get { return _right; } }
+        public INode Right { get { return _right; } }
 
-        // AddSub       : Value (PluMin Value)*
+        // AddSub       : MulDiv (PluMin MulDiv)*
         internal static INode Produce(TokenBuffer tokens)
         {
-            var value = Value.Produce(tokens);
-            if (value == null)
+            var mulDiv = MulDiv.Produce(tokens);
+            if (mulDiv == null)
                 return null;
 
             tokens.SavePosition();
-            INode lhs = value;
+            INode lhs = mulDiv;
             var pluMin = PluMin.Produce(tokens);
             while (pluMin != null)
             {
-                var rhs = Value.Produce(tokens);
+                var rhs = MulDiv.Produce(tokens);
                 if (rhs == null)
                 {
                     tokens.RestorePosition();
@@ -44,9 +44,7 @@
                 pluMin = PluMin.Produce(tokens);
             }
 
-            if (lhs is Value)
-                return lhs;
-            return lhs.As<AddSub>();
+            return lhs;
         }
     }
 }
