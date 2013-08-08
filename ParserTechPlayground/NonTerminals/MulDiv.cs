@@ -43,5 +43,12 @@
                 return lhs;
             return lhs.As<MulDiv>();
         }
+
+        public double Evaluate()
+        {
+            if (_timDivOp.IsTimes)
+                return _left.Evaluate() * _right.Evaluate();
+            return _left.Evaluate() / _right.Evaluate();
+        }
     }
 }

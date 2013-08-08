@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace ParserTechPlayground
+﻿namespace ParserTechPlayground
 {
     public class Expression
     {

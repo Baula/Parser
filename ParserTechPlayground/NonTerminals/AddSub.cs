@@ -46,5 +46,12 @@
 
             return lhs;
         }
+
+        public double Evaluate()
+        {
+            if (_pluMinOp.IsPlusNotMinus)
+                return _left.Evaluate() + _right.Evaluate();
+            return _left.Evaluate() - _right.Evaluate();
+        }
     }
 }

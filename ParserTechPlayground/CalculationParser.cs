@@ -29,6 +29,11 @@ namespace ParserTechPlayground
     */
     public class CalculationParser
     {
+        public CalculationParser()
+        {
+            Symbols.Clear();
+        }
+
         public Assignment Parse(string input)
         {
             var tokens = new Tokenizer().Tokenize(input);
@@ -40,6 +45,8 @@ namespace ParserTechPlayground
             var eof = tokens.GetTerminal<EOF>();
             if (eof == null)
                 throw new ParseException("Expected end of file");
+
+            Symbols.Add(assignment.Assignee, assignment.Assigner);
 
             return assignment;
         }

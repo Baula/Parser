@@ -3,13 +3,14 @@ using System.Linq;
 
 namespace ParserTechPlayground
 {
-    public class Identifier
+    public class Identifier : INode
     {
         private string _name;
 
         private Identifier(List<Character> characters)
         {
             _name = characters.Aggregate("", (s, c) => s += c.Value);
+            Symbols.Register(this);
         }
 
         public string Name { get { return _name; } }
@@ -31,6 +32,11 @@ namespace ParserTechPlayground
             }
 
             return null;
+        }
+
+        public double Evaluate()
+        {
+            return Symbols.Get(this.Name).Evaluate();
         }
     }
 }

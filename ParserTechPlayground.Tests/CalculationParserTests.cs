@@ -138,5 +138,15 @@ namespace ParserTechPlayground.Tests
             Assert.AreEqual("two", divNode.Left.As<Value>().Identifier.Name);
             Assert.AreEqual("three", divNode.Right.As<Value>().Identifier.Name);
         }
+
+        [TestMethod]
+        public void MultiLineCalculationInAnyOrder()
+        {
+            _parser.Parse("one=1");
+            _parser.Parse("twelve=10*one+two");
+            _parser.Parse("two=2");
+
+            Assert.AreEqual(12, Symbols.Get("twelve").Evaluate());
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 
 namespace ParserTechPlayground
 {
@@ -49,6 +50,13 @@ namespace ParserTechPlayground
                 var kindInfo = (_number != null) ? "Number" : "Identifier";
                 return string.Format("{0} ({1})", ToString(), kindInfo);
             }
+        }
+
+        public double Evaluate()
+        {
+            if (_number != null)
+                return _number.Value;
+            return _identifier.Evaluate();
         }
     }
 }
