@@ -148,5 +148,13 @@ namespace ParserTechPlayground.Tests
 
             Assert.AreEqual(12, Symbols.Get("twelve").Evaluate());
         }
+
+        [TestMethod]
+        public void SupportForWhitespace()
+        {
+            _parser.Parse(" result\t= 2 * 3 ");
+
+            Assert.AreEqual(6, Symbols.Get("result").Evaluate());
+        }
     }
 }

@@ -8,7 +8,8 @@
             foreach (var c in input)
             {
                 var token = GetToken(c);
-                buffer.Add(token);
+                if (token != null)
+                    buffer.Add(token);
             }
             buffer.Add(new EOF());
             return buffer;
@@ -30,7 +31,9 @@
                 return new MultiplicationOperator();
             if (c == '/')
                 return new DivisionOperator();
-            throw new ParseException(string.Format("Invalid character '{0}'.", c));
+            if (c == ' ' || c == '\t')
+                return null;
+            throw new ParseException(string.Format("Invalid character '{0}' (0x{1:x2}).", c, (int)c));
         }
     }
 }
