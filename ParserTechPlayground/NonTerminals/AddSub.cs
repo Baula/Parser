@@ -3,7 +3,7 @@
     public class AddSub : INode
     {
         private INode _left;
-        private PluMin _pluMinOp;
+        private AddSubOp _operator;
         private INode _right;
 
         public AddSub(Value left)
@@ -11,18 +11,18 @@
             _left = left;
         }
 
-        private AddSub(INode left, PluMin pluMinOp, INode right)
+        private AddSub(INode left, AddSubOp @operator, INode right)
         {
             _left = left;
-            _pluMinOp = pluMinOp;
+            _operator = @operator;
             _right = right;
         }
 
         public INode Left { get { return _left; } }
-        public PluMin Operator { get { return _pluMinOp; } }
+        public AddSubOp Operator { get { return _operator; } }
         public INode Right { get { return _right; } }
 
-        // AddSub       : MulDiv (PluMin MulDiv)*
+        // AddSub       : MulDiv (AddSubOp MulDiv)*
         internal static INode Produce(TokenBuffer tokens)
         {
             var mulDiv = MulDiv.Produce(tokens);
@@ -36,8 +36,8 @@
 
         private static INode BuildSubNodes(INode lhs, TokenBuffer tokens)
         {
-            var pluMin = PluMin.Produce(tokens);
-            if (pluMin == null)
+            var addSubOp = AddSubOp.Produce(tokens);
+            if (addSubOp == null)
                 return lhs;
 
             var rhs = MulDiv.Produce(tokens);
@@ -47,14 +47,14 @@
                 return lhs;
             }
 
-            lhs = new AddSub(lhs, pluMin, rhs);
+            lhs = new AddSub(lhs, addSubOp, rhs);
 
             return BuildSubNodes(lhs, tokens);
         }
 
         public double Evaluate()
         {
-            if (_pluMinOp.IsPlusNotMinus)
+            if (_operator.IsPlusNotMinus)
                 return _left.Evaluate() + _right.Evaluate();
             return _left.Evaluate() - _right.Evaluate();
         }

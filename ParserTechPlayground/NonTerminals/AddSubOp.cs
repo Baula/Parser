@@ -1,31 +1,31 @@
 ﻿namespace ParserTechPlayground
 {
-    public class PluMin
+    public class AddSubOp
     {
         private readonly bool _isPlusNotMinus;
 
-        private PluMin(AdditionOperator addOp)
+        private AddSubOp(AdditionOperator addOp)
         {
             _isPlusNotMinus = true;
         }
 
-        private PluMin(SubtractionOperator subOp)
+        private AddSubOp(SubtractionOperator subOp)
         {
             _isPlusNotMinus = false;
         }
 
         public bool IsPlusNotMinus { get { return _isPlusNotMinus; } }
 
-        // PluMin       : AddOp | SubOp
-        internal static PluMin Produce(TokenBuffer tokens)
+        // AddSubOp       : AddOp | SubOp
+        internal static AddSubOp Produce(TokenBuffer tokens)
         {
             var addOp = tokens.GetTerminal<AdditionOperator>();
             if (addOp != null)
-                return new PluMin(addOp);
+                return new AddSubOp(addOp);
 
             var subOp = tokens.GetTerminal<SubtractionOperator>();
             if (subOp != null)
-                return new PluMin(subOp);
+                return new AddSubOp(subOp);
 
             return null;
         }

@@ -59,7 +59,7 @@
     <Compile Include="IToken.cs" />
     <Compile Include="NonTerminals\Number.cs" />
     <Compile Include="ParseException.cs" />
-    <Compile Include="NonTerminals\PluMin.cs" />
+    <Compile Include="NonTerminals\AddSubOp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tokens\MultiplicationOperator.cs" />
     <Compile Include="Tokens\SubtractionOperator.cs" />

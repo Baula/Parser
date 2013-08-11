@@ -8,7 +8,7 @@ namespace ParserTechPlayground
      * - Non-Terminals
      * Assignment   : Identifier AssignOp Expression EOF
      * Expression   : AddSub
-     * AddSub       : MulDiv (PluMin MulDiv)*
+     * AddSub       : MulDiv (AddSubOp MulDiv)*
      * MulDiv       : Value (TimDiv Value)*
      * Value        : Identifier | Number
      * Number       : Digits
@@ -16,7 +16,7 @@ namespace ParserTechPlayground
      * Identifier   : Character+
      * 
      * - Terminals
-     * PluMin       : AddOp | SubOp
+     * AddSubOp     : AddOp | SubOp
      * AddOp        : '+'
      * SubOp        : '-'
      * TimDiv       : MulOp | DivOp
