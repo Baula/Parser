@@ -25,23 +25,26 @@
                 return null;
 
             tokens.SavePosition();
-            INode lhs = value;
+
+            return BuildSubNodes(value, tokens);
+        }
+
+        private static INode BuildSubNodes(INode lhs, TokenBuffer tokens)
+        {
             var timDiv = TimDiv.Produce(tokens);
-            while (timDiv != null)
+            if (timDiv == null)
+                return lhs;
+
+            var rhs = Value.Produce(tokens);
+            if (rhs == null)
             {
-                var rhs = Value.Produce(tokens);
-                if (rhs == null)
-                {
-                    tokens.RestorePosition();
-                    break;
-                }
-                lhs = new MulDiv(lhs, timDiv, rhs);
-                timDiv = TimDiv.Produce(tokens);
+                tokens.RestorePosition();
+                return lhs;
             }
 
-            if (lhs is Value)
-                return lhs;
-            return lhs.As<MulDiv>();
+            lhs = new MulDiv(lhs, timDiv, rhs);
+
+            return BuildSubNodes(lhs, tokens);
         }
 
         public double Evaluate()

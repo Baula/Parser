@@ -30,21 +30,26 @@
                 return null;
 
             tokens.SavePosition();
-            INode lhs = mulDiv;
+
+            return BuildSubNodes(mulDiv, tokens);
+        }
+
+        private static INode BuildSubNodes(INode lhs, TokenBuffer tokens)
+        {
             var pluMin = PluMin.Produce(tokens);
-            while (pluMin != null)
+            if (pluMin == null)
+                return lhs;
+
+            var rhs = MulDiv.Produce(tokens);
+            if (rhs == null)
             {
-                var rhs = MulDiv.Produce(tokens);
-                if (rhs == null)
-                {
-                    tokens.RestorePosition();
-                    break;
-                }
-                lhs = new AddSub(lhs, pluMin, rhs);
-                pluMin = PluMin.Produce(tokens);
+                tokens.RestorePosition();
+                return lhs;
             }
 
-            return lhs;
+            lhs = new AddSub(lhs, pluMin, rhs);
+
+            return BuildSubNodes(lhs, tokens);
         }
 
         public double Evaluate()
