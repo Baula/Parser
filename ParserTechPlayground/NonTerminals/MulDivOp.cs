@@ -1,30 +1,30 @@
 ﻿namespace ParserTechPlayground
 {
-    public class TimDiv
+    public class MulDivOp
     {
         private MultiplicationOperator _mulOp;
         private DivisionOperator _divOp;
 
-        public TimDiv(MultiplicationOperator mulOp)
+        public MulDivOp(MultiplicationOperator mulOp)
         {
             _mulOp = mulOp;
         }
 
-        public TimDiv(DivisionOperator divOp)
+        public MulDivOp(DivisionOperator divOp)
         {
             _divOp = divOp;
         }
 
-        // TimDiv       : MulOp | DivOp
-        internal static TimDiv Produce(TokenBuffer tokens)
+        // MulDivOp       : MulOp | DivOp
+        internal static MulDivOp Produce(TokenBuffer tokens)
         {
             var mulOp = tokens.GetTerminal<MultiplicationOperator>();
             if (mulOp != null)
-                return new TimDiv(mulOp);
+                return new MulDivOp(mulOp);
 
             var divOp = tokens.GetTerminal<DivisionOperator>();
             if (divOp != null)
-                return new TimDiv(divOp);
+                return new MulDivOp(divOp);
 
             return null;
         }

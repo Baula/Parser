@@ -42,7 +42,7 @@
     <Compile Include="NodeExtensions.cs" />
     <Compile Include="NonTerminals\INode.cs" />
     <Compile Include="NonTerminals\MulDiv.cs" />
-    <Compile Include="NonTerminals\TimDiv.cs" />
+    <Compile Include="NonTerminals\MulDivOp.cs" />
     <Compile Include="Symbols.cs" />
     <Compile Include="Tokens\AdditionOperator.cs" />
     <Compile Include="NonTerminals\AddSub.cs" />
