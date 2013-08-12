@@ -229,5 +229,66 @@ namespace ParserTechPlayground.Tests
 
             Assert.AreEqual(-123, Symbols.Get("aNumber").Evaluate());
         }
+
+        [TestMethod]
+        public void NumberInParenthesis()
+        {
+            var result = _parser.Parse("aNumber = (123)");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("aNumber", result.Assignee.Name);
+            var number = result.Assigner.As<Value>().Number;
+            Assert.AreEqual(123, number.Value);
+        }
+
+        [TestMethod]
+        public void ParenthesisWithUnaryMinus()
+        {
+            var result = _parser.Parse("aNumber = -(-123)");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("aNumber", result.Assignee.Name);
+            var outerUnary = result.Assigner.As<Unary>();
+            var innerUnary = outerUnary.Operand.As<Unary>();
+            var number = innerUnary.Operand.As<Value>().Number;
+            Assert.AreEqual(123, number.Value);
+            Assert.AreEqual(123, Symbols.Get("aNumber").Evaluate());
+        }
+
+        [TestMethod]
+        public void NegativeExponent()
+        {
+            var result = _parser.Parse("aNumber = 2^-3");
+
+            Assert.AreEqual(0.125, Symbols.Get("aNumber").Evaluate());
+        }
+
+        [TestMethod]
+        public void ExpressionUsingParenthesis()
+        {
+            var result = _parser.Parse("aNumber = -(1+2)*3 + (2^2)^-2");
+
+            // -3*3 + 8^-2 = -9 + 1/16
+            Assert.AreEqual(-8.9375, Symbols.Get("aNumber").Evaluate());
+        }
+
+        [TestMethod]
+        public void ExpressionMissingClosingParenthesis_ThrowsProperException()
+        {
+            new Action(
+                () => _parser.Parse("left = (justopen")
+                )
+                .ShouldThrow<ParseException>()
+                .WithMessage("Missing closing parenthesis", ComparisonMode.Substring);
+        }
+
+        [TestMethod]
+        public void NestedParenthesis()
+        {
+            var result = _parser.Parse("aNumber = 123 + ((1+2) ^ (3*4))");
+
+            // 123 + (3 ^ 12)
+            Assert.AreEqual(531564, Symbols.Get("aNumber").Evaluate());
+        }
     }
 }

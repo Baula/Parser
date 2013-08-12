@@ -11,13 +11,16 @@ namespace ParserTechPlayground
      * AddSub       : MulDiv (AddSubOp MulDiv)*
      * MulDiv       : ExpRoot (MulDivOp ExpRoot)*
      * ExpRoot      : Unary ExpRootOp ExpRoot | Unary
-     * Unary        : AddSubOp? Value
+     * Unary        : AddSubOp? Atom
+     * Atom         : Value | LParen Expression RParen
      * Value        : Identifier | Number
      * Number       : Digits
      * Digits       : Digit+
      * Identifier   : Character+
      * 
      * - Terminals
+     * LParen       : '('
+     * RParen       : ')'
      * AddSubOp     : AddOp | SubOp
      * AddOp        : '+'
      * SubOp        : '-'

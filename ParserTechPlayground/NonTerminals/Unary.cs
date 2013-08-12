@@ -3,15 +3,17 @@
     public class Unary : INode
     {
         private AddSubOp _operator;
-        private Value _value;
+        private INode _atom;
 
-        public Unary(AddSubOp @operator, Value value)
+        public Unary(AddSubOp @operator, INode atom)
         {
             _operator = @operator;
-            _value = value;
+            _atom = atom;
         }
 
-        // Unary        : AddSubOp? Value
+        public INode Operand { get { return _atom; } }
+
+        // Unary        : AddSubOp? Atom
         internal static INode Produce(TokenBuffer tokens)
         {
             // HACK
@@ -20,12 +22,12 @@
 
             var op = AddSubOp.Produce(tokens);
 
-            var value = Value.Produce(tokens);
-            if (value != null)
+            var atom = Atom.Produce(tokens);
+            if (atom != null)
             {
                 if (op != null && op.IsMinus)
-                    return new Unary(op, value);
-                return value;
+                    return new Unary(op, atom);
+                return atom;
             }
 
             tokens.RestorePosition();
@@ -35,8 +37,15 @@
         public double Evaluate()
         {
             if (_operator.IsMinus)
-                return -_value.Evaluate();
-            return _value.Evaluate();
+                return -_atom.Evaluate();
+            return _atom.Evaluate();
+        }
+
+        public override string ToString()
+        {
+            if (_operator != null)
+                return _operator.ToString() + _atom.ToString();
+            return _atom.ToString();
         }
     }
 }

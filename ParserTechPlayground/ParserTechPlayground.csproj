@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NodeExtensions.cs" />
+    <Compile Include="NonTerminals\Atom.cs" />
     <Compile Include="NonTerminals\ExpRoot.cs" />
     <Compile Include="NonTerminals\ExpRootOp.cs" />
     <Compile Include="NonTerminals\INode.cs" />
@@ -53,6 +54,8 @@
     <Compile Include="Tokens\AssignmentOperator.cs" />
     <Compile Include="CalculationParser.cs" />
     <Compile Include="Tokens\Character.cs" />
+    <Compile Include="Tokens\LeftParenthesis.cs" />
+    <Compile Include="Tokens\RightParenthesis.cs" />
     <Compile Include="Tokens\RootExtractionOperator.cs" />
     <Compile Include="Tokens\Digit.cs" />
     <Compile Include="NonTerminals\Digits.cs" />

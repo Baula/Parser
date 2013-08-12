@@ -35,6 +35,10 @@
                 return new ExponentiationOperator();
             if (c == '\\')
                 return new RootExtractionOperator();
+            if (c == '(')
+                return new LeftParenthesis();
+            if (c == ')')
+                return new RightParenthesis();
             if (c == ' ' || c == '\t')
                 return null;
             throw new ParseException(string.Format("Invalid character '{0}' (0x{1:x2}).", c, (int)c));
