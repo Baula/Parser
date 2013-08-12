@@ -96,7 +96,7 @@ namespace ParserTechPlayground.Tests
             Assert.AreEqual("left", result.Assignee.Name);
             var mulNode = result.Assigner.As<MulDiv>();
             Assert.AreEqual("this", mulNode.Left.As<Value>().Identifier.Name);
-            Assert.AreEqual("that", mulNode.Right.Identifier.Name);
+            Assert.AreEqual("that", mulNode.Right.As<Value>().Identifier.Name);
         }
 
         [TestMethod]
@@ -155,6 +155,71 @@ namespace ParserTechPlayground.Tests
             _parser.Parse(" result\t= 2 * 3 ");
 
             Assert.AreEqual(6, Symbols.Get("result").Evaluate());
+        }
+
+        [TestMethod]
+        public void ExpressionIsExponentiation()
+        {
+            var result = _parser.Parse("left=this^that");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("left", result.Assignee.Name);
+            var expNode = result.Assigner.As<ExpRoot>();
+            Assert.IsTrue(expNode.Operator.IsExponentiation);
+            Assert.AreEqual("this", expNode.Left.As<Value>().Identifier.Name);
+            Assert.AreEqual("that", expNode.Right.As<Value>().Identifier.Name);
+        }
+
+        [TestMethod]
+        public void ExpressionIsHalfExponentiation_ThrowsProperException()
+        {
+            new Action(
+                () => _parser.Parse("left=one^")
+                )
+                .ShouldThrow<ParseException>()
+                .WithMessage("Expected expression for the right side of the assignment.", ComparisonMode.Substring);
+        }
+
+        [TestMethod]
+        public void ExpressionIsMultipleExponentiation()
+        {
+            var result = _parser.Parse("left=this^that^another");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("left", result.Assignee.Name);
+
+            // mind: exponentiation is right associative
+            var topExpNode = result.Assigner.As<ExpRoot>();
+            Assert.IsTrue(topExpNode.Operator.IsExponentiation);
+            Assert.AreEqual("this", topExpNode.Left.As<Value>().Identifier.Name);
+
+            var subExpNode = topExpNode.Right.As<ExpRoot>();
+            Assert.IsTrue(subExpNode.Operator.IsExponentiation);
+            Assert.AreEqual("that", subExpNode.Left.As<Value>().Identifier.Name);
+            Assert.AreEqual("another", subExpNode.Right.As<Value>().Identifier.Name);
+        }
+
+        [TestMethod]
+        public void ExpressionIsRooting()
+        {
+            var result = _parser.Parse(@"left=this\that");
+
+            Assert.IsNotNull(result);
+            Assert.AreEqual("left", result.Assignee.Name);
+            var rootNode = result.Assigner.As<ExpRoot>();
+            Assert.IsTrue(rootNode.Operator.IsRootExtraction);
+            Assert.AreEqual("this", rootNode.Left.As<Value>().Identifier.Name);
+            Assert.AreEqual("that", rootNode.Right.As<Value>().Identifier.Name);
+        }
+
+        [TestMethod]
+        public void ExpressionIsHalfRooting_ThrowsProperException()
+        {
+            new Action(
+                () => _parser.Parse("left=one//")
+                )
+                .ShouldThrow<ParseException>()
+                .WithMessage("Expected end of file", ComparisonMode.Substring);
         }
     }
 }

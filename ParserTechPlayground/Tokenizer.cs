@@ -31,6 +31,10 @@
                 return new MultiplicationOperator();
             if (c == '/')
                 return new DivisionOperator();
+            if (c == '^')
+                return new ExponentiationOperator();
+            if (c == '\\')
+                return new RootExtractionOperator();
             if (c == ' ' || c == '\t')
                 return null;
             throw new ParseException(string.Format("Invalid character '{0}' (0x{1:x2}).", c, (int)c));

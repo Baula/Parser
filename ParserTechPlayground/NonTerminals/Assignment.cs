@@ -36,8 +36,7 @@
 
             var assigner = Expression.Produce(tokens);
             if (assigner == null)
-                //throw new ParseException("Expected expression for the assigner after assignment operator.");
-                return null;
+                throw new ParseException("Expected expression for the right side of the assignment.");
 
             return new Assignment(assignee, assigner);
         }

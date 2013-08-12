@@ -4,9 +4,9 @@
     {
         private readonly INode _left;
         private readonly MulDivOp _operator;
-        private readonly Value _right;
+        private readonly INode _right;
 
-        public MulDiv(INode left, MulDivOp @operator, Value right)
+        public MulDiv(INode left, MulDivOp @operator, INode right)
         {
             _left = left;
             _operator = @operator;
@@ -15,18 +15,18 @@
 
         public INode Left { get { return _left; } }
         public MulDivOp Operator { get { return _operator; } }
-        public Value Right { get { return _right; } }
+        public INode Right { get { return _right; } }
 
-        // Value (MulDivOp Value)*
+        // ExpRoot (MulDivOp ExpRoot)*
         internal static INode Produce(TokenBuffer tokens)
         {
-            var value = Value.Produce(tokens);
-            if (value == null)
+            var expRoot = ExpRoot.Produce(tokens);
+            if (expRoot == null)
                 return null;
 
             tokens.SavePosition();
 
-            return BuildSubNodes(value, tokens);
+            return BuildSubNodes(expRoot, tokens);
         }
 
         private static INode BuildSubNodes(INode lhs, TokenBuffer tokens)
@@ -35,7 +35,7 @@
             if (mulDivOp == null)
                 return lhs;
 
-            var rhs = Value.Produce(tokens);
+            var rhs = ExpRoot.Produce(tokens);
             if (rhs == null)
             {
                 tokens.RestorePosition();
