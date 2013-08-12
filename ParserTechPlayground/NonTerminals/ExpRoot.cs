@@ -39,7 +39,9 @@ namespace ParserTechPlayground
         
         public double Evaluate()
         {
-            throw new System.NotImplementedException();
+            if (_operator.IsExponentiation)
+                return Math.Pow(_left.Evaluate(), _right.Evaluate());
+            return Math.Pow(_left.Evaluate(), 1 / _right.Evaluate());
         }
     }
 }

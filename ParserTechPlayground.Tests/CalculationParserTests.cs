@@ -140,16 +140,6 @@ namespace ParserTechPlayground.Tests
         }
 
         [TestMethod]
-        public void MultiLineCalculationInAnyOrder()
-        {
-            _parser.Parse("one=1");
-            _parser.Parse("twelve=10*one+two");
-            _parser.Parse("two=2");
-
-            Assert.AreEqual(12, Symbols.Get("twelve").Evaluate());
-        }
-
-        [TestMethod]
         public void SupportForWhitespace()
         {
             _parser.Parse(" result\t= 2 * 3 ");
