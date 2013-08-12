@@ -10,7 +10,8 @@ namespace ParserTechPlayground
      * Expression   : AddSub
      * AddSub       : MulDiv (AddSubOp MulDiv)*
      * MulDiv       : ExpRoot (MulDivOp ExpRoot)*
-     * ExpRoot      : Value ExpRootOp ExpRoot | Value
+     * ExpRoot      : Unary ExpRootOp ExpRoot | Unary
+     * Unary        : AddSubOp? Value
      * Value        : Identifier | Number
      * Number       : Digits
      * Digits       : Digit+
@@ -25,7 +26,7 @@ namespace ParserTechPlayground
      * DivOp        : '/'
      * ExpRootOp    : ExpOp | RootOp
      * ExpOp        : '^'
-     * RootOp       : '//'
+     * RootOp       : '\'
      * Digit        : '0'..'9'
      * Character    : 'a'..'b'
      * AssignOp     : '='

@@ -14,7 +14,8 @@
             _isPlusNotMinus = false;
         }
 
-        public bool IsPlusNotMinus { get { return _isPlusNotMinus; } }
+        public bool IsPlus { get { return _isPlusNotMinus; } }
+        public bool IsMinus { get { return !_isPlusNotMinus; } }
 
         // AddSubOp       : AddOp | SubOp
         internal static AddSubOp Produce(TokenBuffer tokens)

@@ -44,7 +44,7 @@ namespace ParserTechPlayground.Tests
             Assert.AreEqual("left", result.Assignee.Name);
             var addNode = result.Assigner.As<AddSub>();
             Assert.AreEqual("one", addNode.Left.As<Value>().Identifier.Name);
-            Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
+            Assert.IsTrue(addNode.Operator.IsPlus);
             Assert.AreEqual("two", addNode.Right.As<Value>().Identifier.Name);
         }
 
@@ -57,7 +57,7 @@ namespace ParserTechPlayground.Tests
             Assert.AreEqual("left", result.Assignee.Name);
             var addNode = result.Assigner.As<AddSub>();
             Assert.AreEqual(123, addNode.Left.As<Value>().Number.Value);
-            Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
+            Assert.IsTrue(addNode.Operator.IsPlus);
             Assert.AreEqual(456, addNode.Right.As<Value>().Number.Value);
         }
 
@@ -71,10 +71,20 @@ namespace ParserTechPlayground.Tests
             var addNode = result.Assigner.As<AddSub>();
             var subNode = addNode.Left.As<AddSub>();
             Assert.AreEqual("one", subNode.Left.As<Value>().Identifier.Name);
-            Assert.IsFalse(subNode.Operator.IsPlusNotMinus);
+            Assert.IsFalse(subNode.Operator.IsPlus);
             Assert.AreEqual("two", subNode.Right.As<Value>().Identifier.Name);
-            Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
+            Assert.IsTrue(addNode.Operator.IsPlus);
             Assert.AreEqual("three", addNode.Right.As<Value>().Identifier.Name);
+        }
+
+        [TestMethod]
+        public void ExpressionIsJustAdditionOperator_ThrowsProperException()
+        {
+            new Action(
+                () => _parser.Parse("left=+")
+                )
+                .ShouldThrow<ParseException>()
+                .WithMessage("Expected expression for the right side of the assignment", ComparisonMode.Substring);
         }
 
         [TestMethod]
@@ -118,10 +128,10 @@ namespace ParserTechPlayground.Tests
             Assert.AreEqual("left", result.Assignee.Name);
 
             var addNode2 = result.Assigner.As<AddSub>();
-            Assert.IsTrue(addNode2.Operator.IsPlusNotMinus);
+            Assert.IsTrue(addNode2.Operator.IsPlus);
 
             var subNode = addNode2.Left.As<AddSub>();
-            Assert.IsFalse(subNode.Operator.IsPlusNotMinus);
+            Assert.IsFalse(subNode.Operator.IsPlus);
             Assert.AreEqual("four", subNode.Right.As<Value>().Identifier.Name);
 
             var mulNode = addNode2.Right.As<MulDiv>();
@@ -130,7 +140,7 @@ namespace ParserTechPlayground.Tests
             Assert.AreEqual("six", mulNode.Right.As<Value>().Identifier.Name);
 
             var addNode = subNode.Left.As<AddSub>();
-            Assert.IsTrue(addNode.Operator.IsPlusNotMinus);
+            Assert.IsTrue(addNode.Operator.IsPlus);
             Assert.AreEqual("one", addNode.Left.As<Value>().Identifier.Name);
 
             var divNode = addNode.Right.As<MulDiv>();
@@ -210,6 +220,14 @@ namespace ParserTechPlayground.Tests
                 )
                 .ShouldThrow<ParseException>()
                 .WithMessage("Expected end of file", ComparisonMode.Substring);
+        }
+
+        [TestMethod]
+        public void UnaryMinus()
+        {
+            var result = _parser.Parse("aNumber = -123");
+
+            Assert.AreEqual(-123, Symbols.Get("aNumber").Evaluate());
         }
     }
 }

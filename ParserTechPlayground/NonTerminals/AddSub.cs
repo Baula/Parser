@@ -54,7 +54,7 @@
 
         public double Evaluate()
         {
-            if (_operator.IsPlusNotMinus)
+            if (_operator.IsPlus)
                 return _left.Evaluate() + _right.Evaluate();
             return _left.Evaluate() - _right.Evaluate();
         }

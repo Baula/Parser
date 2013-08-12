@@ -3,35 +3,35 @@ namespace ParserTechPlayground
 {
     public class ExpRoot : INode
     {
-        private Value _left;
+        private INode _left;
         private ExpRootOp _operator;
         private INode _right;
 
-        public ExpRoot(Value left, ExpRootOp @operator, INode right)
+        public ExpRoot(INode left, ExpRootOp @operator, INode right)
         {
             _left = left;
             _operator = @operator;
             _right = right;
         }
-        public Value Left { get { return _left; } }
+        public INode Left { get { return _left; } }
         public ExpRootOp Operator { get { return _operator; } }
         public INode Right { get { return _right; } }
 
-        // ExpRoot      : Value ExpRootOp ExpRoot | Value
+        // ExpRoot      : Unary ExpRootOp ExpRoot | Unary
         internal static INode Produce(TokenBuffer tokens)
         {
-            var value = Value.Produce(tokens);
-            if (value == null)
+            var unary = Unary.Produce(tokens);
+            if (unary == null)
                 return null;
 
             tokens.SavePosition();
             var expRootOp = ExpRootOp.Produce(tokens);
             if (expRootOp == null)
-                return value;
+                return unary;
 
             var rhs = ExpRoot.Produce(tokens);
             if (rhs != null)
-                return new ExpRoot(value, expRootOp, rhs);
+                return new ExpRoot(unary, expRootOp, rhs);
 
             tokens.RestorePosition();
             return null;
