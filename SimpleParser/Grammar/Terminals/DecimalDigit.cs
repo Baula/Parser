@@ -8,7 +8,7 @@ namespace SimpleParser.Grammar.Terminals
 
         public DecimalDigit(char c)
         {
-            _value = int.Parse(c.ToString(CultureInfo.InvariantCulture));
+            _value = int.Parse(c.ToString());
         }
 
         public int Value
