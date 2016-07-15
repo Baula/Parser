@@ -78,12 +78,6 @@
     <Content Include="ApprovalTests.RefactoringRegression_InvalidFormulas.approved.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SimpleParser\SimpleParser.csproj">
-      <Project>{a947ba0e-3888-4d29-8cbf-e82fdde32cea}</Project>
-      <Name>SimpleParser</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
