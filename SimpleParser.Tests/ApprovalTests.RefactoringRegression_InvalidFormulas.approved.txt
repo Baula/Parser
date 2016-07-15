@@ -1,6 +1,0 @@
-﻿Parsing >-(123+)< Exception: Invalid expression
-Parsing >-(*123)< Exception: Invalid formula
-Parsing >*123< Exception: Invalid formula
-Parsing >*123a< Exception: Invalid formula
-Parsing >1.< Exception: Invalid formula
-Parsing >--1< Exception: Invalid expression
