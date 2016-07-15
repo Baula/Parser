@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikiTools", "WikiTools\WikiTools.csproj", "{6F7ECD04-947F-4711-9477-72808BCFA861}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikiTools.Tests", "WikiTools.Tests\WikiTools.Tests.csproj", "{270DA2F5-96A3-4976-BF9C-7F5D69647750}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E8DD3B72-6AD6-43F6-9443-6DDF4D412F53}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{E3EA0DD1-6673-4A25-A2A6-C254E676552F}"
@@ -38,14 +34,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6F7ECD04-947F-4711-9477-72808BCFA861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6F7ECD04-947F-4711-9477-72808BCFA861}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6F7ECD04-947F-4711-9477-72808BCFA861}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6F7ECD04-947F-4711-9477-72808BCFA861}.Release|Any CPU.Build.0 = Release|Any CPU
-		{270DA2F5-96A3-4976-BF9C-7F5D69647750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{270DA2F5-96A3-4976-BF9C-7F5D69647750}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{270DA2F5-96A3-4976-BF9C-7F5D69647750}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{270DA2F5-96A3-4976-BF9C-7F5D69647750}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A867CCBA-8F16-4F9A-8DBA-95FC65ABEA44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A867CCBA-8F16-4F9A-8DBA-95FC65ABEA44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A867CCBA-8F16-4F9A-8DBA-95FC65ABEA44}.Release|Any CPU.ActiveCfg = Release|Any CPU
