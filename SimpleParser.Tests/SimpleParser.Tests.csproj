@@ -66,16 +66,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Parser\SimpleParser.csproj">
-      <Project>{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}</Project>
-      <Name>SimpleParser</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApprovalTests.RefactoringRegression_InvalidFormulas.approved.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimpleParser\SimpleParser.csproj">
+      <Project>{a947ba0e-3888-4d29-8cbf-e82fdde32cea}</Project>
+      <Name>SimpleParser</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

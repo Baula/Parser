@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Windows Desktop
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleParser", "Parser\SimpleParser.csproj", "{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}"
-EndProject
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleParser.Tests", "SimpleParser.Tests\SimpleParser.Tests.csproj", "{98629FC2-09F0-4B2B-B7F6-B0FD67193E18}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikiTools", "WikiTools\WikiTools.csproj", "{6F7ECD04-947F-4711-9477-72808BCFA861}"
@@ -13,16 +13,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserTechPlayground", "Par
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParserTechPlayground.Tests", "ParserTechPlayground.Tests\ParserTechPlayground.Tests.csproj", "{3BE9E0DF-BD0A-45A4-9806-C4B4B39D4AB6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleParser", "SimpleParser\SimpleParser.csproj", "{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98629FC2-09F0-4B2B-B7F6-B0FD67193E18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{98629FC2-09F0-4B2B-B7F6-B0FD67193E18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98629FC2-09F0-4B2B-B7F6-B0FD67193E18}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -43,6 +41,10 @@ Global
 		{3BE9E0DF-BD0A-45A4-9806-C4B4B39D4AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BE9E0DF-BD0A-45A4-9806-C4B4B39D4AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BE9E0DF-BD0A-45A4-9806-C4B4B39D4AB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A947BA0E-3888-4D29-8CBF-E82FDDE32CEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
