@@ -84,7 +84,7 @@ namespace ParserTechPlayground.Tests
                 () => _parser.Parse("left=+")
                 )
                 .ShouldThrow<ParseException>()
-                .WithMessage("Expected expression for the right side of the assignment", ComparisonMode.Substring);
+                .WithMessage("Expected expression for the right side of the assignment.");
         }
 
         [TestMethod]
@@ -94,7 +94,7 @@ namespace ParserTechPlayground.Tests
                 () => _parser.Parse("left=one+")
                 )
                 .ShouldThrow<ParseException>()
-                .WithMessage("Expected end of file", ComparisonMode.Substring);
+                .WithMessage("Expected end of file");
         }
 
         [TestMethod]
@@ -116,7 +116,7 @@ namespace ParserTechPlayground.Tests
                 () => _parser.Parse("left=one*")
                 )
                 .ShouldThrow<ParseException>()
-                .WithMessage("Expected end of file", ComparisonMode.Substring);
+                .WithMessage("Expected end of file");
         }
 
         [TestMethod]
@@ -177,7 +177,7 @@ namespace ParserTechPlayground.Tests
                 () => _parser.Parse("left=one^")
                 )
                 .ShouldThrow<ParseException>()
-                .WithMessage("Expected expression for the right side of the assignment.", ComparisonMode.Substring);
+                .WithMessage("Expected expression for the right side of the assignment.");
         }
 
         [TestMethod]
@@ -219,7 +219,7 @@ namespace ParserTechPlayground.Tests
                 () => _parser.Parse("left=one//")
                 )
                 .ShouldThrow<ParseException>()
-                .WithMessage("Expected end of file", ComparisonMode.Substring);
+                .WithMessage("Expected end of file");
         }
 
         [TestMethod]
@@ -279,7 +279,7 @@ namespace ParserTechPlayground.Tests
                 () => _parser.Parse("left = (justopen")
                 )
                 .ShouldThrow<ParseException>()
-                .WithMessage("Missing closing parenthesis", ComparisonMode.Substring);
+                .WithMessage("Missing closing parenthesis");
         }
 
         [TestMethod]
