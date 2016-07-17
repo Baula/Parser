@@ -17,5 +17,7 @@
       "dependencies": {
       }
     }
-  }
+  },
+
+  "runtimes": {"win7-x64": {}}
 }
